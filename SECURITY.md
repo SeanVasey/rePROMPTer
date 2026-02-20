@@ -19,10 +19,38 @@ You should receive an acknowledgment within 48 hours. We will work with you to u
 
 ## Security Design
 
+### Architecture
+
 - **Zero-trust frontend**: API keys are never sent to or stored in the browser. All AI API calls are routed through Vercel serverless functions on the server side.
-- **Input validation**: The API route validates prompt length, mode, and model selection before processing.
 - **No secrets in source**: Environment variables are used for all credentials. The `.env` file is gitignored; `.env.example` documents required variables without values.
-- **Content Security**: User-uploaded images are processed in-memory and not persisted to disk or external storage.
+
+### HTTP Security Headers
+
+All responses include the following headers (configured in `vercel.json`):
+
+| Header | Value | Purpose |
+|--------|-------|---------|
+| `Content-Security-Policy` | `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; connect-src 'self'; font-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'` | Prevents XSS, clickjacking, and data injection |
+| `X-Content-Type-Options` | `nosniff` | Prevents MIME-type sniffing |
+| `X-Frame-Options` | `DENY` | Blocks embedding in frames |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | Limits referrer leakage |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` | Disables unused browser APIs |
+
+### API Endpoint Validation
+
+The `/api/enhance` route enforces:
+
+- **HTTP method**: Only `POST` is accepted (405 for others)
+- **Prompt length**: Maximum 10,000 characters
+- **Image payload**: Maximum 5 MB base64; media type auto-detected from magic bytes
+- **Mode whitelist**: Must be one of `Enhance`, `Expand`, `Clarify`, `Rewrite`
+- **Model whitelist**: Must match a known model identifier
+- **Error sanitization**: Internal SDK errors are not forwarded to clients; only known-safe messages are surfaced
+
+### Content Security
+
+- User-uploaded images are processed in-memory and not persisted to disk or external storage.
+- Image media types are detected from actual content (magic bytes), not client-supplied headers.
 
 ## Supported Versions
 

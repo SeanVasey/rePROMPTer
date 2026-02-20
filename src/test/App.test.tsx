@@ -20,7 +20,7 @@ describe('App', () => {
 
   it('renders the version badge', () => {
     render(<App />);
-    expect(screen.getByText('v1.2.4')).toBeInTheDocument();
+    expect(screen.getByText('v1.3.0')).toBeInTheDocument();
   });
 
   it('renders the tagline', () => {

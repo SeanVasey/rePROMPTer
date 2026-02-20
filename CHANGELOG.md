@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-02-20
+
+### Added
+
+- PWA support: web app manifest, service worker with cache-first strategy, installable on mobile and desktop
+- Full PWA icon set generated from source SVG (72–512px standard + 192/512 maskable + 180px Apple touch icon)
+- `npm run generate-icons` script to regenerate icon PNGs from `public/favicon.svg`
+- Apple PWA meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`, `apple-touch-icon`)
+- Image media-type auto-detection in API (PNG, JPEG, GIF, WebP) — no longer hardcoded to `image/png`
+- Image payload size validation (5 MB limit) on the API endpoint
+
+### Changed
+
+- Security headers added to Vercel config: Content-Security-Policy, X-Frame-Options (DENY), X-Content-Type-Options (nosniff), Referrer-Policy, Permissions-Policy
+- API error responses no longer leak internal SDK error messages; only known-safe messages are surfaced to clients
+- SECURITY.md expanded with details on new CSP, header, and image validation policies
+
 ## [1.2.4] - 2026-02-20
 
 ### Added
