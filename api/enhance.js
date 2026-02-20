@@ -23,15 +23,36 @@ const MODEL_MAP = {
   'Google Gemini 3.1 Flash': { provider: 'google', model: 'gemini-2.5-flash-preview-05-20' },
 };
 
+const MAX_PROMPT_LENGTH = 10_000;
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5 MB base64 (~3.75 MB raw)
+
+function detectMediaType(base64) {
+  const sig = base64.slice(0, 12);
+  if (sig.startsWith('iVBOR')) return 'image/png';
+  if (sig.startsWith('/9j/')) return 'image/jpeg';
+  if (sig.startsWith('R0lGOD')) return 'image/gif';
+  if (sig.startsWith('UklGR')) return 'image/webp';
+  return 'image/png'; // safe default
+}
+
 function validateRequest(body) {
-  const { prompt, mode, targetModel } = body;
+  const { prompt, image, mode, targetModel } = body;
 
   if (!prompt || typeof prompt !== 'string' || prompt.trim().length === 0) {
     return 'A non-empty prompt is required.';
   }
 
-  if (prompt.length > 10000) {
-    return 'Prompt must be 10,000 characters or fewer.';
+  if (prompt.length > MAX_PROMPT_LENGTH) {
+    return `Prompt must be ${MAX_PROMPT_LENGTH.toLocaleString()} characters or fewer.`;
+  }
+
+  if (image !== null && image !== undefined) {
+    if (typeof image !== 'string') {
+      return 'Image must be a base64-encoded string or null.';
+    }
+    if (image.length > MAX_IMAGE_BYTES) {
+      return 'Image exceeds the 5 MB size limit.';
+    }
   }
 
   const validModes = ['Enhance', 'Expand', 'Clarify', 'Rewrite'];
@@ -55,11 +76,12 @@ async function callAnthropic(modelId, systemPrompt, userPrompt, imageBase64) {
   const content = [];
 
   if (imageBase64) {
+    const mediaType = detectMediaType(imageBase64);
     content.push({
       type: 'image',
       source: {
         type: 'base64',
-        media_type: 'image/png',
+        media_type: mediaType,
         data: imageBase64,
       },
     });
@@ -91,9 +113,10 @@ async function callGoogle(modelId, systemPrompt, userPrompt, imageBase64) {
   const parts = [];
 
   if (imageBase64) {
+    const mimeType = detectMediaType(imageBase64);
     parts.push({
       inlineData: {
-        mimeType: 'image/png',
+        mimeType,
         data: imageBase64,
       },
     });
@@ -104,6 +127,12 @@ async function callGoogle(modelId, systemPrompt, userPrompt, imageBase64) {
   const result = await model.generateContent(parts);
   return result.response.text();
 }
+
+// Known safe error messages that can be surfaced to clients.
+const SAFE_ERROR_MESSAGES = new Set([
+  'ANTHROPIC_API_KEY is not configured.',
+  'GOOGLE_AI_API_KEY is not configured.',
+]);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -132,7 +161,10 @@ export default async function handler(req, res) {
     return res.status(200).json({ enhancedPrompt });
   } catch (err) {
     console.error('Enhancement API error:', err);
-    const message = err instanceof Error ? err.message : 'Internal server error';
+    const raw = err instanceof Error ? err.message : '';
+    const message = SAFE_ERROR_MESSAGES.has(raw)
+      ? raw
+      : 'Enhancement service encountered an error. Please try again.';
     return res.status(500).json({ error: message });
   }
 }

@@ -7,7 +7,8 @@ The precision prompt optimization studio. Enhance, expand, clarify, and rewrite 
 - **Multi-mode optimization** — Choose from Enhance, Expand, Clarify, or Rewrite modes to transform your prompts
 - **Multi-model targeting** — Optimize prompts for Anthropic Claude or Google Gemini models with format-aware output
 - **Image context** — Upload reference images to provide visual context for prompt enhancement
-- **Secure architecture** — Zero-trust frontend with all API keys isolated on the server via Vercel serverless functions
+- **Installable PWA** — Add to home screen on mobile or desktop for an app-like experience with offline shell caching
+- **Secure architecture** — Zero-trust frontend with all API keys isolated on the server via Vercel serverless functions; security headers (CSP, X-Frame-Options, etc.) enforced at the edge
 - **Copy to clipboard** — One-click copy of enhanced output
 - **Preview mode** — Works without a backend for local development and demos
 - **Responsive design** — Dark-themed UI that works across desktop and mobile
@@ -20,6 +21,7 @@ The precision prompt optimization studio. Enhance, expand, clarify, and rewrite 
 | Frontend  | React 19, TypeScript, Tailwind CSS 3       |
 | Build     | Vite 6                                     |
 | Icons     | Lucide React                               |
+| PWA       | Web App Manifest, Service Worker           |
 | Backend   | Vercel Serverless Functions (Node.js)      |
 | AI SDKs   | Anthropic SDK, Google Generative AI SDK    |
 | Testing   | Vitest, React Testing Library              |
@@ -85,13 +87,29 @@ npm run lint
 npm run typecheck
 ```
 
+### Regenerate PWA Icons
+
+If you change `public/favicon.svg`, regenerate the PNG icon set:
+
+```bash
+npm run generate-icons
+```
+
+This produces all required PWA sizes (72–512px), maskable variants, and the Apple touch icon from the source SVG.
+
 ## Project Structure
 
 ```
 ├── api/
 │   └── enhance.js           # Vercel serverless function (prompt enhancement API)
 ├── public/
-│   └── favicon.svg           # App favicon
+│   ├── favicon.svg           # Source SVG icon (pencil + sparkles)
+│   ├── manifest.json         # PWA web app manifest
+│   ├── sw.js                 # Service worker (cache-first static, network-first API)
+│   ├── apple-touch-icon.png  # iOS home-screen icon (180×180)
+│   └── icon-*.png            # PWA icons at standard sizes + maskable variants
+├── scripts/
+│   └── generate-icons.mjs    # Generates PNG icons from favicon.svg
 ├── src/
 │   ├── api.ts                # Frontend API client
 │   ├── App.tsx               # Root application component
@@ -104,14 +122,14 @@ npm run typecheck
 │   │   ├── NavBar.tsx        # Bottom navigation bar
 │   │   └── OutputSection.tsx # Enhanced output display + copy
 │   ├── index.css             # Tailwind base styles
-│   ├── main.tsx              # React entry point
+│   ├── main.tsx              # React entry point + service worker registration
 │   └── test/
 │       ├── App.test.tsx      # Component integration tests
 │       ├── api.test.ts       # API client unit tests
 │       └── setup.ts          # Test configuration
 ├── .github/workflows/
 │   └── ci.yml                # GitHub Actions CI pipeline
-├── vercel.json               # Vercel deployment config
+├── vercel.json               # Vercel deployment config + security headers
 └── package.json
 ```
 
