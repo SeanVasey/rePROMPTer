@@ -20,7 +20,7 @@ describe('App', () => {
 
   it('renders the version badge', () => {
     render(<App />);
-    expect(screen.getByText('v1.4.0')).toBeInTheDocument();
+    expect(screen.getByText('v1.4.1')).toBeInTheDocument();
   });
 
   it('renders the tagline', () => {
@@ -78,7 +78,7 @@ describe('App', () => {
 
   it('shows the default target model', () => {
     render(<App />);
-    expect(screen.getByText('Anthropic Claude 4.6 Sonnet')).toBeInTheDocument();
+    expect(screen.getByText('Anthropic Claude Sonnet 4.6')).toBeInTheDocument();
   });
 
   it('opens model dropdown on click', async () => {
@@ -89,8 +89,8 @@ describe('App', () => {
     await user.click(modelButton);
 
     // All models should be visible in the dropdown
-    expect(screen.getByRole('option', { name: /claude 4.6 haiku/i })).toBeInTheDocument();
-    expect(screen.getByRole('option', { name: /gemini 3.1 pro/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /claude haiku 4\.5/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /gemini 2\.5 pro/i })).toBeInTheDocument();
   });
 
   it('displays preview response when API returns 404', async () => {

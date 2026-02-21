@@ -17,10 +17,10 @@ const SYSTEM_PROMPTS = {
 };
 
 const MODEL_MAP = {
-  'Anthropic Claude 4.6 Sonnet': { provider: 'anthropic', model: 'claude-sonnet-4-20250514' },
-  'Anthropic Claude 4.6 Haiku': { provider: 'anthropic', model: 'claude-haiku-4-20250414' },
-  'Google Gemini 3.1 Pro': { provider: 'google', model: 'gemini-2.5-pro-preview-05-06' },
-  'Google Gemini 3.1 Flash': { provider: 'google', model: 'gemini-2.5-flash-preview-05-20' },
+  'Anthropic Claude Sonnet 4.6': { provider: 'anthropic', model: 'claude-sonnet-4-6-20260217' },
+  'Anthropic Claude Haiku 4.5': { provider: 'anthropic', model: 'claude-haiku-4-5-20251001' },
+  'Google Gemini 2.5 Pro': { provider: 'google', model: 'gemini-2.5-pro' },
+  'Google Gemini 2.5 Flash': { provider: 'google', model: 'gemini-2.5-flash' },
 };
 
 const MAX_PROMPT_LENGTH = 10_000;
