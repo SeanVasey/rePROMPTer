@@ -1,127 +1,23 @@
 export default function CustomIcon() {
   return (
     <div className="w-[52px] h-[52px] flex-shrink-0" role="img" aria-label="rePROMPTer logo">
-      <svg viewBox="0 0 1024 1024" className="w-full h-full" aria-hidden="true">
-        <defs>
-          <linearGradient
-            id="iconGrad"
-            x1="110"
-            y1="180"
-            x2="860"
-            y2="890"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stopColor="#FF4D5A" />
-            <stop offset="1" stopColor="#8B0000" />
-          </linearGradient>
-        </defs>
-
-        {/* Pencil (outline with hollow center) */}
-        <path
-          fill="url(#iconGrad)"
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="
-            M 270 660
-            L 620 310
-            Q 650 280 690 320
-            L 780 410
-            Q 820 450 790 480
-            L 440 830
-            Q 420 850 395 842
-            L 260 800
-            Q 230 790 240 760
-            L 278 685
-            Q 285 672 270 660
-            Z
-            M 330 675
-            L 615 390
-            Q 630 375 645 390
-            L 700 445
-            Q 715 460 700 475
-            L 415 760
-            Q 405 770 392 766
-            L 315 742
-            Q 302 738 308 726
-            L 336 690
-            Q 344 680 330 675
-            Z
-          "
-        />
-
-        {/* Pencil tip detail */}
-        <path
-          fill="url(#iconGrad)"
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="
-            M 308 726
-            L 362 705
-            L 338 750
-            Q 334 758 326 756
-            L 310 751
-            Q 302 748 304 740
-            L 308 726
-            Z
-            M 326 735
-            L 346 727
-            L 337 744
-            L 326 741
-            L 326 735
-            Z
-          "
-        />
-
-        {/* Dash / underline */}
-        <rect x="390" y="820" width="470" height="70" rx="35" fill="url(#iconGrad)" />
-
-        {/* Large sparkle (left) */}
-        <path
-          fill="url(#iconGrad)"
-          d="
-            M 260 250
-            L 310 350
-            L 410 400
-            L 310 450
-            L 260 550
-            L 210 450
-            L 110 400
-            L 210 350
-            Z
-          "
-        />
-
-        {/* Small sparkle (top right) */}
-        <path
-          fill="url(#iconGrad)"
-          d="
-            M 740 180
-            L 770 240
-            L 830 270
-            L 770 300
-            L 740 360
-            L 710 300
-            L 650 270
-            L 710 240
-            Z
-          "
-        />
-
-        {/* Small sparkle (bottom right) */}
-        <path
-          fill="url(#iconGrad)"
-          d="
-            M 720 520
-            L 750 580
-            L 810 610
-            L 750 640
-            L 720 700
-            L 690 640
-            L 630 610
-            L 690 580
-            Z
-          "
-        />
+      <svg viewBox="0 0 1024 1024" fill="none" className="w-full h-full" aria-hidden="true">
+        <g stroke="#8A8A8A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* Pencil body */}
+          <path d="M 286 812 L 276 809 L 264 800 L 258 790 L 257 778 L 270 707 L 310 565 L 331 509 L 703 292 L 733 280 L 756 280 L 775 287 L 798 306 L 829 339 L 837 359 L 837 381 L 828 402 L 490 764 L 447 789 L 299 827 L 286 825 Z" />
+          {/* Large sparkle (left) */}
+          <path d="M 238 350 L 324 283 L 411 347 L 335 391 L 313 477 L 282 394 Z" />
+          {/* Small sparkle (top right) */}
+          <path d="M 682 252 L 724 219 L 767 251 L 729 273 L 717 315 L 702 278 Z" />
+          {/* Small sparkle (bottom right) */}
+          <path d="M 679 560 L 722 529 L 764 561 L 727 581 L 713 625 L 701 587 Z" />
+          {/* Horizontal bar / underline */}
+          <path d="M 411 730 L 431 702 L 769 702 L 795 714 L 804 727 L 803 740 L 794 751 L 769 761 L 423 761 Z" />
+          {/* Diagonal slash */}
+          <path d="M 400 613 L 368 643 L 623 865 L 652 836 Z" />
+          {/* Pencil tip detail */}
+          <path d="M 293 654 L 283 666 L 305 701 L 347 721 L 377 713 L 389 699 L 334 649 Z" />
+        </g>
       </svg>
     </div>
   );
