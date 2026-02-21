@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import { Upload, X } from 'lucide-react';
 
 interface ImageUploadProps {
@@ -8,19 +8,13 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ imageFile, onImageChange }: ImageUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const previewUrl = useMemo(() => (imageFile ? URL.createObjectURL(imageFile) : null), [imageFile]);
 
   useEffect(() => {
-    if (!imageFile) {
-      setPreviewUrl(null);
-      return;
-    }
-
-    const url = URL.createObjectURL(imageFile);
-    setPreviewUrl(url);
-
-    return () => URL.revokeObjectURL(url);
-  }, [imageFile]);
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

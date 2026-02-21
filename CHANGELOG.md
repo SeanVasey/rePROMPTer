@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.0] - 2026-02-21
+
+### Added
+
+- GitHub Pages deployment workflow (`pages.yml`) — builds with relative base for static hosting in preview mode
+- Comprehensive README with enhancement modes, supported models, feature flags, API reference, architecture diagram, and deployment guides
+- `vitest.config.ts` confirmed compatible with Vitest 4
+
+### Changed
+
+- Asset paths in `index.html` and `manifest.json` changed from absolute (`/`) to relative (`./`) for cross-deployment compatibility (Vercel + GitHub Pages)
+- Service worker registration uses `import.meta.env.BASE_URL` for base-path-aware scope
+- Service worker caches relative to its registration scope instead of hardcoded root paths
+- Service worker cache version bumped to `repromter-v2`
+- `ImageUpload` component refactored: replaced `useState` + `useEffect` with `useMemo` for derived preview URL (eliminates cascading renders)
+- Upgraded Vitest from v2 to v4, ESLint plugins to latest compatible versions
+- Fixed `ajv` audit vulnerability via `npm audit fix`
+
+### Fixed
+
+- GitHub Pages blank page: app now builds correctly for static hosting with relative asset references
+- ESLint `react-hooks/set-state-in-effect` violation in `ImageUpload` component
+
 ## [1.3.0] - 2026-02-20
 
 ### Added
