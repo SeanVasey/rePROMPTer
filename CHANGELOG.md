@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.1] - 2026-02-21
+
+### Fixed
+
+- Updated expired Google Gemini preview model IDs (`gemini-2.5-pro-preview-05-06`, `gemini-2.5-flash-preview-05-20`) to stable GA versions (`gemini-2.5-pro`, `gemini-2.5-flash`), resolving "Enhancement service encountered an error" on Vercel deployment
+- Updated Anthropic model IDs to current versions: Claude Sonnet 4.6 (`claude-sonnet-4-6-20260217`) and Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
+
+### Changed
+
+- Icon colors updated to match the app's red accent color scheme — pencil blade filled with accent red (`#E63946`), sparkles use accent stroke and translucent fill, pencil outline uses muted (`#9A9AAA`)
+- Model display names corrected to match actual model versions (e.g., "Anthropic Claude Sonnet 4.6" instead of "Anthropic Claude 4.6 Sonnet")
+- Regenerated all PWA icons from updated SVG
+
 ## [1.4.0] - 2026-02-21
 
 ### Added
@@ -52,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - React 19 + TypeScript + Vite 6 frontend application
 - Tailwind CSS 3 dark-themed UI with responsive design
 - Four enhancement modes: Enhance, Expand, Clarify, Rewrite
-- Multi-model targeting: Anthropic Claude 4.6 Sonnet/Haiku, Google Gemini 3.1 Pro/Flash
+- Multi-model targeting: Anthropic Claude Sonnet 4.6 / Haiku 4.5, Google Gemini 2.5 Pro / Flash
 - Image upload with preview for visual context in prompt enhancement
 - Vercel serverless API route (`api/enhance.js`) with Anthropic and Google AI SDK integration
 - Secure zero-trust architecture — API keys never leave the server

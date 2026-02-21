@@ -13,7 +13,7 @@ describe('enhancePrompt', () => {
     prompt: 'Test prompt',
     image: null,
     mode: 'Enhance' as const,
-    targetModel: 'Anthropic Claude 4.6 Sonnet' as const,
+    targetModel: 'Anthropic Claude Sonnet 4.6' as const,
   };
 
   it('sends a POST request with the correct body', async () => {
@@ -60,31 +60,31 @@ describe('enhancePrompt', () => {
 
 describe('generatePreviewResponse', () => {
   it('includes XML tags for Claude models', () => {
-    const result = generatePreviewResponse('Enhance', 'Anthropic Claude 4.6 Sonnet', 'test');
+    const result = generatePreviewResponse('Enhance', 'Anthropic Claude Sonnet 4.6', 'test');
     expect(result).toContain('<context>');
     expect(result).toContain('</context>');
   });
 
   it('does not include XML tags for Gemini models', () => {
-    const result = generatePreviewResponse('Enhance', 'Google Gemini 3.1 Pro', 'test');
+    const result = generatePreviewResponse('Enhance', 'Google Gemini 2.5 Pro', 'test');
     expect(result).not.toContain('<context>');
     expect(result).not.toContain('</context>');
   });
 
   it('includes the selected mode', () => {
-    const result = generatePreviewResponse('Rewrite', 'Anthropic Claude 4.6 Sonnet', 'test');
+    const result = generatePreviewResponse('Rewrite', 'Anthropic Claude Sonnet 4.6', 'test');
     expect(result).toContain('"Rewrite"');
   });
 
   it('truncates long input text', () => {
     const longInput = 'a'.repeat(100);
-    const result = generatePreviewResponse('Enhance', 'Anthropic Claude 4.6 Sonnet', longInput);
+    const result = generatePreviewResponse('Enhance', 'Anthropic Claude Sonnet 4.6', longInput);
     expect(result).toContain('...');
     expect(result).not.toContain('a'.repeat(100));
   });
 
   it('includes preview mode notice', () => {
-    const result = generatePreviewResponse('Enhance', 'Anthropic Claude 4.6 Sonnet', 'test');
+    const result = generatePreviewResponse('Enhance', 'Anthropic Claude Sonnet 4.6', 'test');
     expect(result).toContain('PREVIEW MODE');
   });
 });

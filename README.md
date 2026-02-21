@@ -77,10 +77,10 @@ All modes return **only** the optimized prompt text — no commentary, labels, o
 
 | Display Name | Provider | Model ID | Format |
 |-------------|----------|----------|--------|
-| Anthropic Claude 4.6 Sonnet | Anthropic | `claude-sonnet-4-20250514` | XML tags (`<instructions>`, `<context>`) |
-| Anthropic Claude 4.6 Haiku | Anthropic | `claude-haiku-4-20250414` | XML tags |
-| Google Gemini 3.1 Pro | Google | `gemini-2.5-pro-preview-05-06` | Markdown + concise directives |
-| Google Gemini 3.1 Flash | Google | `gemini-2.5-flash-preview-05-20` | Markdown + concise directives |
+| Anthropic Claude Sonnet 4.6 | Anthropic | `claude-sonnet-4-6-20260217` | XML tags (`<instructions>`, `<context>`) |
+| Anthropic Claude Haiku 4.5 | Anthropic | `claude-haiku-4-5-20251001` | XML tags |
+| Google Gemini 2.5 Pro | Google | `gemini-2.5-pro` | Markdown + concise directives |
+| Google Gemini 2.5 Flash | Google | `gemini-2.5-flash` | Markdown + concise directives |
 
 The target model selection controls:
 - Which AI SDK handles the request (Anthropic SDK or Google Generative AI SDK)

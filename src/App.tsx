@@ -13,7 +13,7 @@ export default function App() {
   const [inputText, setInputText] = useState('');
   const [resultText, setResultText] = useState('');
   const [selectedMode, setSelectedMode] = useState<Mode>('Enhance');
-  const [targetModel, setTargetModel] = useState<TargetModel>('Anthropic Claude 4.6 Sonnet');
+  const [targetModel, setTargetModel] = useState<TargetModel>('Anthropic Claude Sonnet 4.6');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
