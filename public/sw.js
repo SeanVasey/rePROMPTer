@@ -1,16 +1,14 @@
 // rePROMPTer Service Worker
 // Cache-first for static assets, network-first for API calls.
 
-const CACHE_NAME = 'repromter-v1';
-const STATIC_ASSETS = [
-  '/',
-  '/manifest.json',
-  '/favicon.svg',
-];
+const CACHE_NAME = 'repromter-v2';
 
 self.addEventListener('install', (event) => {
+  // Cache the scope root (index.html), manifest, and favicon relative to the SW scope.
+  const scope = self.registration.scope;
+  const urls = [scope, new URL('manifest.json', scope).href, new URL('favicon.svg', scope).href];
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(urls))
   );
   self.skipWaiting();
 });
@@ -29,7 +27,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   // Network-only for API calls — never cache mutable data
-  if (url.pathname.startsWith('/api/')) {
+  if (url.pathname.includes('/api/')) {
     return;
   }
 
