@@ -19,7 +19,7 @@ You should receive an acknowledgment within 48 hours. We will work with you to u
 
 ## Security Principles
 
-The following principles should guide the rebuild of this application:
+This application follows these security principles:
 
 - **Zero-trust frontend**: API keys must never be sent to or stored in the browser. All AI API calls must route through server-side functions.
 - **No secrets in source**: Environment variables for all credentials. `.env` gitignored; `.env.example` documents required variables without values.
@@ -32,5 +32,5 @@ The following principles should guide the rebuild of this application:
 
 | Version | Supported |
 | ------- | --------- |
-| 2.x.x   | Yes (pending rebuild) |
+| 2.2.x   | Yes |
 | 1.x.x   | No (removed) |

@@ -1,28 +1,19 @@
 # rePROMPTer
 
-The precision prompt optimization studio. Enhance, expand, clarify, and rewrite AI prompts — optimized for any target model.
-
-> **Status**: This repository has been reset to documentation only. The application code will be rebuilt from scratch. See [CHANGELOG.md](CHANGELOG.md) for history.
-
----
-
-## Product Vision
-
-rePROMPTer is a web application that takes user-written AI prompts and optimizes them for specific target models. It provides four distinct transformation modes, supports image context, and formats output according to each model's conventions.
+The advanced prompt optimization engine. Enhance, expand, clarify, and rewrite AI prompts — optimized for any target model.
 
 ---
 
 ## Features
 
 - **Multi-mode optimization** — Four distinct modes (Enhance, Expand, Clarify, Rewrite) that each transform prompts differently
-- **Multi-model targeting** — Output format adapts to the selected target model (XML tags for Claude, Markdown directives for Gemini)
+- **Three-model targeting** — Output adapts to: Anthropic Claude Sonnet 4.6, OpenAI ChatGPT-5.2, or Google Gemini 3.0 Pro
 - **Image context** — Upload reference images (PNG, JPEG, GIF, WebP; 5 MB max) to provide visual context during optimization
-- **Installable PWA** — Add to home screen on mobile or desktop for an app-like experience with offline shell caching
-- **Secure zero-trust architecture** — API keys never reach the browser; all AI calls route through serverless functions
-- **Preview mode** — Fully functional demo without a backend; returns simulated model-specific output
-- **One-click copy** — Copy enhanced output to clipboard
-- **Responsive dark UI** — Dark-themed interface that works across desktop and mobile viewports
-- **Accessible** — Keyboard-navigable with ARIA attributes, role-based semantics, and screen-reader support
+- **Secure zero-trust architecture** — API keys never reach the browser; all AI calls route through Vercel serverless functions
+- **Installable PWA** — Add to home screen on mobile (iOS/Android) or desktop for an app-like experience with offline shell caching
+- **One-click copy** — Copy enhanced output to clipboard with toast notification
+- **Responsive dark UI** — Glassmorphic dark-themed interface that works across desktop and mobile viewports
+- **Accessible** — Keyboard-navigable with semantic HTML and screen-reader support
 
 ---
 
@@ -32,8 +23,8 @@ rePROMPTer is a web application that takes user-written AI prompts and optimizes
 |------|------|--------------|
 | **Enhance** | Sparkles | Improves specificity, structure, and detail while preserving original intent |
 | **Expand** | Maximize | Adds context, constraints, examples, and supporting detail |
-| **Clarify** | Settings | Removes ambiguity, adds precision, restructures for maximum clarity |
-| **Rewrite** | Rotate | Complete reimagining from scratch using prompt engineering best practices |
+| **Clarify** | Layers | Removes ambiguity, adds precision, restructures for maximum clarity |
+| **Rewrite** | Edit3 | Complete reimagining from scratch using prompt engineering best practices |
 
 All modes return **only** the optimized prompt text — no commentary, labels, or meta-text.
 
@@ -41,17 +32,71 @@ All modes return **only** the optimized prompt text — no commentary, labels, o
 
 ## Supported Models
 
-| Display Name | Provider | Model ID | Format |
-|-------------|----------|----------|--------|
-| Anthropic Claude Sonnet 4.6 | Anthropic | `claude-sonnet-4-6-20260217` | XML tags (`<instructions>`, `<context>`) |
-| Anthropic Claude Haiku 4.5 | Anthropic | `claude-haiku-4-5-20251001` | XML tags |
-| Google Gemini 2.5 Pro | Google | `gemini-2.5-pro` | Markdown + concise directives |
-| Google Gemini 2.5 Flash | Google | `gemini-2.5-flash` | Markdown + concise directives |
+| Display Name | Provider | Backend Model ID | Prompt Format |
+|-------------|----------|------------------|---------------|
+| Anthropic Claude Sonnet 4.6 | Anthropic | `claude-sonnet-4-6-20260217` | XML tags (`<context>`, `<task>`, `<example>`) |
+| OpenAI ChatGPT-5.2 | OpenAI | `chatgpt-4o-latest` | Markdown + personas/roles |
+| Google Gemini 3.0 Pro | Google | `gemini-2.5-pro` | Structured headings + direct instructions |
 
-The target model selection controls:
-- Which AI SDK handles the request (Anthropic SDK or Google Generative AI SDK)
-- How the optimized prompt is formatted (XML tags for Claude, Markdown for Gemini)
-- Which model processes the optimization on the backend
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 19, TypeScript 5.7, Tailwind CSS 3 |
+| Build | Vite 6 |
+| Icons | Lucide React |
+| PWA | Web App Manifest, Service Worker |
+| Backend | Vercel Serverless Functions (Node.js) |
+| AI SDKs | Anthropic SDK, OpenAI SDK, Google Generative AI SDK |
+| Testing | Vitest, React Testing Library |
+| Linting | ESLint 9 with TypeScript + React plugins |
+| CI | GitHub Actions (lint, typecheck, test, build) |
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Node.js 18+
+- npm
+
+### Install
+
+```bash
+git clone https://github.com/SeanVasey/rePROMPTer.git
+cd rePROMPTer
+npm install
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and fill in your API keys:
+
+```bash
+cp .env.example .env
+```
+
+| Variable | Required For | Description |
+|----------|-------------|-------------|
+| `ANTHROPIC_API_KEY` | Claude Sonnet 4.6 | Anthropic API key |
+| `OPENAI_API_KEY` | ChatGPT-5.2 | OpenAI API key |
+| `GOOGLE_AI_API_KEY` | Gemini 3.0 Pro | Google AI API key |
+
+On Vercel, add these as environment variables in your project settings.
+
+### Development
+
+```bash
+npm run dev        # Start Vite dev server
+npm run build      # TypeScript check + production build
+npm run preview    # Preview production build
+npm run lint       # ESLint
+npm run typecheck  # TypeScript type checking
+npm run test       # Run tests
+```
 
 ---
 
@@ -65,47 +110,28 @@ The target model selection controls:
          │
          ▼
 ┌─────────────────────┐
-│  Select target model │   3. Pick which AI model the output targets
+│  Select target model │   3. Pick: Claude / ChatGPT / Gemini
 │  Select mode         │   4. Choose an optimization mode
 └────────┬────────────┘
          │
          ▼
 ┌─────────────────────┐
-│   Press Re-Prompt    │   5. Submit for optimization
+│   Press Enhance      │   5. Submit for optimization
 └────────┬────────────┘
          │
-    ┌────┴─────┐
-    │ Backend? │
-    └────┬─────┘
-    Yes  │  No
-    ▼    ▼
-┌──────┐ ┌───────────┐
-│ API  │ │  Preview   │   Backend: serverless function → AI SDK
-│ call │ │  fallback  │   No backend: simulated model-aware response
-└──┬───┘ └─────┬─────┘
-   │           │
-   └─────┬─────┘
+         ▼
+┌─────────────────────┐
+│   POST /api/enhance  │   Vercel serverless function
+│   ├─ Anthropic SDK   │   Routes to correct provider
+│   ├─ OpenAI SDK      │   based on targetModel
+│   └─ Google AI SDK   │
+└────────┬────────────┘
+         │
          ▼
 ┌─────────────────────┐
 │  Enhanced output     │   6. View result + copy to clipboard
 └─────────────────────┘
 ```
-
----
-
-## Previous Tech Stack (v1.4.1)
-
-| Layer     | Technology                                 |
-| --------- | ------------------------------------------ |
-| Frontend  | React 19, TypeScript 5.7, Tailwind CSS 3   |
-| Build     | Vite 6                                     |
-| Icons     | Lucide React                               |
-| PWA       | Web App Manifest, Service Worker           |
-| Backend   | Vercel Serverless Functions (Node.js)      |
-| AI SDKs   | Anthropic SDK, Google Generative AI SDK    |
-| Testing   | Vitest, React Testing Library              |
-| Linting   | ESLint 9 with TypeScript + React plugins   |
-| CI        | GitHub Actions (lint, typecheck, test, build) |
 
 ---
 
@@ -119,10 +145,10 @@ Optimizes a prompt using the selected AI model and enhancement mode.
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `prompt` | `string` | Yes | The prompt to optimize (1–10,000 characters) |
-| `image` | `string \| null` | No | Base64-encoded image for visual context (max 5 MB) |
-| `mode` | `string` | Yes | One of: `Enhance`, `Expand`, `Clarify`, `Rewrite` |
-| `targetModel` | `string` | Yes | One of the supported model display names |
+| `prompt` | `string` | Yes | The prompt to optimize (1–50,000 characters) |
+| `image` | `string` | No | Base64 data URI for visual context (max 5 MB) |
+| `mode` | `string` | Yes | One of: `enhance`, `expand`, `clarify`, `rewrite` |
+| `targetModel` | `string` | Yes | One of: `claude-sonnet`, `chatgpt-5`, `gemini-3` |
 
 **Success response** (`200`):
 
@@ -140,14 +166,53 @@ Optimizes a prompt using the selected AI model and enhancement mode.
 
 ---
 
-## Environment Variables
+## Deployment
 
-| Variable           | Required | Description                      |
-| ------------------ | -------- | -------------------------------- |
-| `ANTHROPIC_API_KEY`| For Claude models | Anthropic API key       |
-| `GOOGLE_AI_API_KEY`| For Gemini models | Google AI API key       |
+Deploy to Vercel:
 
-Without API keys the app runs in **preview mode**, returning simulated responses.
+1. Push the repository to GitHub
+2. Import the project in [Vercel](https://vercel.com)
+3. Add environment variables (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`) in project settings
+4. Deploy — Vercel auto-detects Vite and configures the build
+
+The `api/enhance.js` file is automatically deployed as a serverless function.
+
+---
+
+## Folder Structure
+
+```
+rePROMPTer/
+├── api/
+│   └── enhance.js          # Vercel serverless function (Anthropic + OpenAI + Google)
+├── public/
+│   ├── favicon.svg          # SVG app icon
+│   ├── manifest.json        # PWA web app manifest
+│   ├── sw.js                # Service worker (offline caching)
+│   ├── apple-touch-icon.png # iOS home screen icon
+│   └── icon-*.png           # PWA icon set (72–512px + maskable)
+├── src/
+│   ├── api.ts               # Frontend API client
+│   ├── App.tsx              # Main React component
+│   ├── constants.ts         # Models, modes, version
+│   ├── index.css            # Global styles + Tailwind
+│   ├── main.tsx             # React entry point
+│   └── vite-env.d.ts       # Vite type definitions
+├── test/
+│   ├── App.test.tsx         # Component tests
+│   ├── api.test.ts          # API client tests
+│   └── setup.ts             # Vitest setup
+├── scripts/
+│   └── generate-icons.mjs   # Generate PWA icons from SVG
+├── .env.example             # Environment variable template
+├── .github/workflows/ci.yml # CI pipeline
+├── index.html               # HTML entry point + PWA meta tags
+├── package.json
+├── tailwind.config.js
+├── tsconfig.json
+├── vercel.json              # Vercel deployment config + security headers
+└── vite.config.ts
+```
 
 ---
 

@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-02-22
+
+### Added
+
+- React 19 + TypeScript + Vite 6 frontend rebuilt from scratch
+- Three-model targeting: Anthropic Claude Sonnet 4.6, OpenAI ChatGPT-5.2, Google Gemini 3.0 Pro
+- Vercel serverless API route (`api/enhance.js`) with Anthropic, OpenAI, and Google AI SDK integration
+- OpenAI SDK dependency for ChatGPT-5.2 support
+- Server-side input validation (prompt length, image size, mode/model whitelisting)
+- Server-side MIME type detection from magic bytes
+- Glassmorphic dark UI with responsive design
+- Image upload with preview for visual context
+- Clipboard copy with async API and fallback
+- Component and API client tests (Vitest + React Testing Library)
+- GitHub Actions CI pipeline (lint, typecheck, test, build)
+- Security headers in Vercel config (CSP, X-Frame-Options, etc.)
+- PWA support: web app manifest, service worker, full icon set (72–512px + maskable)
+- iOS home screen installation support (apple-touch-icon, meta tags)
+- Icon generation script (`scripts/generate-icons.mjs`) using sharp
+
+### Changed
+
+- Model lineup reduced from 4 to 3 (removed Claude Haiku and Gemini Flash; added OpenAI ChatGPT-5.2)
+- API contract now uses lowercase mode IDs and short model IDs (`claude-sonnet`, `chatgpt-5`, `gemini-3`)
+- Environment variables now include `OPENAI_API_KEY`
+
+---
+
 ## [2.0.0] - 2026-02-22
 
 ### Removed
