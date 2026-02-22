@@ -5,78 +5,97 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.4.1] - 2026-02-21
+## [2.0.0] - 2026-02-22
 
-### Fixed
+### Removed
 
-- Updated expired Google Gemini preview model IDs (`gemini-2.5-pro-preview-05-06`, `gemini-2.5-flash-preview-05-20`) to stable GA versions (`gemini-2.5-pro`, `gemini-2.5-flash`), resolving "Enhancement service encountered an error" on Vercel deployment
+- All application source code (React frontend, Vercel serverless backend, tests, components)
+- Build tooling (Vite, TypeScript configs, Tailwind, PostCSS, ESLint)
+- CI/CD workflows (GitHub Actions)
+- PWA assets (icons, manifest, service worker)
+- npm dependencies (package.json, package-lock.json)
+- Deployment configs (vercel.json, index.html)
+
+### Changed
+
+- README.md rewritten as a product specification for rebuilding the application from scratch
+- SECURITY.md simplified to policy-only (implementation details removed pending rebuild)
+- CHANGELOG.md updated with full version history preserved below
+
+### Retained
+
+- CLAUDE.md (engineering standards and guidelines)
+- README.md (product spec: features, modes, models, API contract, architecture)
+- CHANGELOG.md (version history)
+- SECURITY.md (vulnerability reporting policy)
+- LICENSE (Apache 2.0)
+- CODE_OF_CONDUCT.md
+- .editorconfig
+- .env.example
+- .gitignore
+
+---
+
+## Previous Releases (v1.x — removed)
+
+### [1.4.1] - 2026-02-21
+
+#### Fixed
+
+- Updated expired Google Gemini preview model IDs (`gemini-2.5-pro-preview-05-06`, `gemini-2.5-flash-preview-05-20`) to stable GA versions (`gemini-2.5-pro`, `gemini-2.5-flash`)
 - Updated Anthropic model IDs to current versions: Claude Sonnet 4.6 (`claude-sonnet-4-6-20260217`) and Claude Haiku 4.5 (`claude-haiku-4-5-20251001`)
 
-### Changed
+#### Changed
 
-- Icon colors updated to match the app's red accent color scheme — pencil blade filled with accent red (`#E63946`), sparkles use accent stroke and translucent fill, pencil outline uses muted (`#9A9AAA`)
-- Model display names corrected to match actual model versions (e.g., "Anthropic Claude Sonnet 4.6" instead of "Anthropic Claude 4.6 Sonnet")
+- Icon colors updated to match the app's red accent color scheme
+- Model display names corrected to match actual model versions
 - Regenerated all PWA icons from updated SVG
 
-## [1.4.0] - 2026-02-21
+### [1.4.0] - 2026-02-21
 
-### Added
+#### Added
 
-- GitHub Pages deployment workflow (`pages.yml`) — builds with relative base for static hosting in preview mode
+- GitHub Pages deployment workflow
 - Comprehensive README with enhancement modes, supported models, feature flags, API reference, architecture diagram, and deployment guides
-- `vitest.config.ts` confirmed compatible with Vitest 4
 
-### Changed
+#### Changed
 
-- Asset paths in `index.html` and `manifest.json` changed from absolute (`/`) to relative (`./`) for cross-deployment compatibility (Vercel + GitHub Pages)
+- Asset paths changed from absolute to relative for cross-deployment compatibility
 - Service worker registration uses `import.meta.env.BASE_URL` for base-path-aware scope
-- Service worker caches relative to its registration scope instead of hardcoded root paths
-- Service worker cache version bumped to `repromter-v2`
-- `ImageUpload` component refactored: replaced `useState` + `useEffect` with `useMemo` for derived preview URL (eliminates cascading renders)
 - Upgraded Vitest from v2 to v4, ESLint plugins to latest compatible versions
-- Fixed `ajv` audit vulnerability via `npm audit fix`
 
-### Fixed
+#### Fixed
 
-- GitHub Pages blank page: app now builds correctly for static hosting with relative asset references
-- ESLint `react-hooks/set-state-in-effect` violation in `ImageUpload` component
+- GitHub Pages blank page resolved with relative asset references
 
-## [1.3.0] - 2026-02-20
+### [1.3.0] - 2026-02-20
 
-### Added
+#### Added
 
-- PWA support: web app manifest, service worker with cache-first strategy, installable on mobile and desktop
-- Full PWA icon set generated from source SVG (72–512px standard + 192/512 maskable + 180px Apple touch icon)
-- `npm run generate-icons` script to regenerate icon PNGs from `public/favicon.svg`
-- Apple PWA meta tags (`apple-mobile-web-app-capable`, `apple-mobile-web-app-status-bar-style`, `apple-touch-icon`)
-- Image media-type auto-detection in API (PNG, JPEG, GIF, WebP) — no longer hardcoded to `image/png`
-- Image payload size validation (5 MB limit) on the API endpoint
+- PWA support: web app manifest, service worker, installable on mobile and desktop
+- Full PWA icon set generated from source SVG
+- Image media-type auto-detection in API (PNG, JPEG, GIF, WebP)
+- Image payload size validation (5 MB limit)
 
-### Changed
+#### Changed
 
-- Security headers added to Vercel config: Content-Security-Policy, X-Frame-Options (DENY), X-Content-Type-Options (nosniff), Referrer-Policy, Permissions-Policy
-- API error responses no longer leak internal SDK error messages; only known-safe messages are surfaced to clients
-- SECURITY.md expanded with details on new CSP, header, and image validation policies
+- Security headers added to Vercel config (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
+- API error responses no longer leak internal SDK error messages
 
-## [1.2.4] - 2026-02-20
+### [1.2.4] - 2026-02-20
 
-### Added
+#### Added
 
 - React 19 + TypeScript + Vite 6 frontend application
 - Tailwind CSS 3 dark-themed UI with responsive design
 - Four enhancement modes: Enhance, Expand, Clarify, Rewrite
-- Multi-model targeting: Anthropic Claude Sonnet 4.6 / Haiku 4.5, Google Gemini 2.5 Pro / Flash
-- Image upload with preview for visual context in prompt enhancement
-- Vercel serverless API route (`api/enhance.js`) with Anthropic and Google AI SDK integration
-- Secure zero-trust architecture — API keys never leave the server
-- Preview mode fallback when no backend is connected
-- Clipboard copy for enhanced output (modern Clipboard API with fallback)
-- Accessible UI with ARIA attributes, keyboard navigation, and semantic HTML
-- Component tests with Vitest and React Testing Library
-- API client unit tests
-- GitHub Actions CI pipeline (lint, typecheck, test, build)
-- ESLint with TypeScript and React plugins
-- Complete project documentation (README, CHANGELOG, SECURITY, CODE_OF_CONDUCT)
-- Vercel deployment configuration
-- `.env.example` with required environment variables
-- `.editorconfig` and `.gitignore`
+- Multi-model targeting: Claude Sonnet 4.6 / Haiku 4.5, Gemini 2.5 Pro / Flash
+- Image upload with preview for visual context
+- Vercel serverless API route with Anthropic and Google AI SDK integration
+- Secure zero-trust architecture
+- Preview mode fallback
+- Clipboard copy with fallback
+- Accessible UI with ARIA attributes and keyboard navigation
+- Component and API client tests (Vitest + React Testing Library)
+- GitHub Actions CI pipeline
+- Complete project documentation
