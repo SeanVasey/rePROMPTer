@@ -204,6 +204,9 @@ rePROMPTer/
 │   └── setup.ts             # Vitest setup
 ├── scripts/
 │   └── generate-icons.mjs   # Generate PWA icons from SVG
+├── tasks/
+│   ├── todo.md              # Active task plan (updated per session)
+│   └── lessons.md           # Accumulated patterns from corrections
 ├── .env.example             # Environment variable template
 ├── .github/workflows/ci.yml # CI pipeline
 ├── index.html               # HTML entry point + PWA meta tags
