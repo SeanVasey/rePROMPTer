@@ -81,11 +81,14 @@ cp .env.example .env
 
 | Variable | Required For | Description |
 |----------|-------------|-------------|
-| `ANTHROPIC_API_KEY` | Claude Sonnet 4.6 | Anthropic API key |
-| `OPENAI_API_KEY` | ChatGPT-5.2 | OpenAI API key |
-| `GOOGLE_AI_API_KEY` | Gemini 3.0 Pro | Google AI API key |
+| `ANTHROPIC_API_KEY` | Anthropic fallback | Used when AI Gateway is disabled or unavailable |
+| `OPENAI_API_KEY` | OpenAI fallback / optional gateway auth | Direct OpenAI usage and optional token source for gateway calls |
+| `GOOGLE_AI_API_KEY` | Google fallback | Used when AI Gateway is disabled or unavailable |
+| `AI_GATEWAY_API_KEY` | AI Gateway | Recommended for local development; optional in Vercel production |
+| `AI_GATEWAY_BASE_URL` | AI Gateway | Optional endpoint override (default: `https://ai-gateway.vercel.sh/v1`) |
+| `AI_GATEWAY_ENABLED` | Routing control | Set to `false` to force direct provider SDK calls |
 
-On Vercel, add these as environment variables in your project settings.
+On Vercel, configure the gateway variable(s) and keep provider keys as a safe fallback path.
 
 ### Development
 
@@ -122,8 +125,9 @@ npm run test       # Run tests
          ▼
 ┌─────────────────────┐
 │   POST /api/enhance  │   Vercel serverless function
-│   ├─ Anthropic SDK   │   Routes to correct provider
-│   ├─ OpenAI SDK      │   based on targetModel
+│   ├─ AI Gateway      │   Primary route (OpenAI-compatible)
+│   ├─ Anthropic SDK   │   Automatic fallback if gateway fails
+│   ├─ OpenAI SDK      │   or gateway disabled
 │   └─ Google AI SDK   │
 └────────┬────────────┘
          │
@@ -172,8 +176,8 @@ Deploy to Vercel:
 
 1. Push the repository to GitHub
 2. Import the project in [Vercel](https://vercel.com)
-3. Add environment variables (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`) in project settings
-4. Deploy — Vercel auto-detects Vite and configures the build
+3. Add environment variables in project settings (`AI_GATEWAY_API_KEY`, optional `AI_GATEWAY_ENABLED`, plus provider fallbacks: `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GOOGLE_AI_API_KEY`)
+4. Deploy — Vercel auto-detects Vite and configures the build; the API route automatically attempts AI Gateway first
 
 The `api/enhance.js` file is automatically deployed as a serverless function.
 
