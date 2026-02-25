@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+
+- Updated `api/enhance.js` to use Vercel AI Gateway as the primary routing path for all target models, with automatic fallback to provider-native SDK calls when gateway calls fail and provider keys are configured
+- Added explicit server configuration handling so enhancement requests now fail fast with actionable errors when neither AI Gateway nor provider credentials are available
+- Added route-level tests covering gateway-first routing, provider fallback behavior, and missing-credentials failure mode
+
+---
+
 ## [2.2.1] - 2026-02-24
 
 ### Changed
