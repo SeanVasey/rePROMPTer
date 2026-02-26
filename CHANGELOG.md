@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.1] - 2026-02-26
+
+### Fixed
+
+- **Inline style replaced with Tailwind arbitrary value** — Removed `style={{ animationDuration: '3s' }}` from logo pulse orb in `App.tsx`, replaced with `[animation-duration:3s]` Tailwind class for consistency and maintainability (closes #16)
+- **`tailwindcss-animate` moved to devDependencies** — Build-time Tailwind plugin was incorrectly listed under `dependencies`; moved to `devDependencies` alongside other build tools (closes #17)
+
+### Changed
+
+- Version bumped from v2.3.0 to v2.3.1
+- Test assertion updated for new version string
+
+---
+
 ## [2.3.0] - 2026-02-26
 
 ### Added
