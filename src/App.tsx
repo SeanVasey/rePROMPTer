@@ -17,15 +17,13 @@ import { enhancePrompt } from './api';
 
 function CustomLogoIcon() {
   return (
-    <div className="relative w-20 h-20 flex items-center justify-center animate-float">
-      <div className="absolute inset-0 bg-gradient-to-br from-[#E63946] to-[#8B0000] rounded-full opacity-30 blur-xl animate-pulse" />
-      <div className="relative z-10 w-16 h-16 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(230,57,70,0.3)] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-50 pointer-events-none" />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1024 1024"
-          className="w-12 h-12 scale-110 drop-shadow-[0_0_8px_rgba(230,57,70,0.8)]"
-        >
+    <div className="relative w-24 h-24 flex items-center justify-center animate-float">
+      <div className="absolute w-14 h-14 bg-[#E63946] rounded-full blur-[20px] opacity-70 animate-pulse" style={{ animationDuration: '3s' }} />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1024 1024"
+        className="relative z-10 w-16 h-16 drop-shadow-[0_0_12px_rgba(230,57,70,0.8)]"
+      >
           <defs>
             <linearGradient id="strokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#ff7b85" />
@@ -54,7 +52,6 @@ function CustomLogoIcon() {
             <path d="M 315 612 L 315 613 L 314 614 L 314 616 L 313 617 L 313 619 L 312 620 L 312 622 L 311 623 L 311 625 L 310 626 L 310 628 L 309 629 L 309 631 L 308 632 L 308 634 L 307 635 L 307 637 L 306 638 L 306 640 L 305 641 L 305 643 L 304 644 L 304 646 L 303 647 L 303 649 L 302 650 L 302 653 L 301 654 L 301 656 L 300 657 L 300 659 L 299 660 L 299 662 L 298 663 L 298 665 L 297 666 L 297 668 L 296 669 L 296 671 L 295 672 L 295 678 L 310 693 L 311 693 L 324 706 L 332 706 L 333 705 L 336 705 L 337 704 L 339 704 L 340 703 L 342 703 L 343 702 L 345 702 L 346 701 L 348 701 L 349 700 L 351 700 L 352 699 L 354 699 L 355 698 L 357 698 L 358 697 L 360 697 L 361 696 L 363 696 L 364 695 L 367 695 L 370 693 L 373 693 L 374 692 L 376 692 L 377 691 L 379 691 L 380 690 L 382 690 L 383 689 L 385 689 L 386 688 L 388 688 L 389 687 L 390 687 L 391 686 L 392 686 L 392 682 L 374 664 L 373 664 L 336 627 L 335 627 L 320 612 Z" />
           </g>
         </svg>
-      </div>
     </div>
   );
 }
@@ -142,21 +139,19 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-[100dvh] bg-[#0A0A0C] text-white font-sans selection:bg-[#E63946]/40 overflow-x-hidden pb-20">
+    <div className="relative min-h-[100dvh] bg-[#050505] text-white font-sans selection:bg-[#E63946]/40 overflow-x-hidden pb-20">
       {/* Dynamic Background Effects */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] bg-[#8B0000]/20 blur-[120px] rounded-full mix-blend-screen animate-pulse"
-          style={{ animationDuration: '8s' }}
-        />
-        <div className="absolute -bottom-[20%] -right-[10%] w-[60vw] h-[60vw] bg-[#E63946]/15 blur-[150px] rounded-full mix-blend-screen" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0C]/50 to-[#0A0A0C] opacity-90" />
+        <div className="absolute inset-0 bg-[#050505] opacity-90" />
+        <div className="absolute -top-[10%] -left-[10%] w-[60vw] h-[60vw] bg-[#8B0000]/30 blur-[120px] rounded-full mix-blend-screen animate-[drift_15s_ease-in-out_infinite]" />
+        <div className="absolute top-[40%] -right-[10%] w-[50vw] h-[50vw] bg-[#E63946]/25 blur-[150px] rounded-full mix-blend-screen animate-[drift_20s_ease-in-out_infinite_reverse]" />
+        <div className="absolute top-[30%] left-[20%] w-[40vw] h-[40vw] bg-[#ff7b85]/15 blur-[120px] rounded-full mix-blend-screen animate-[drift_12s_ease-in-out_infinite]" />
       </div>
 
       {/* Main Scrollable Content */}
       <div className="relative z-10 max-w-2xl mx-auto px-5 sm:px-6">
         {/* Header */}
-        <header className="sticky top-0 z-50 pt-10 pb-6 mb-4 -mx-5 px-5 sm:-mx-6 sm:px-6 bg-gradient-to-b from-[#0A0A0C]/90 via-[#0A0A0C]/70 to-transparent backdrop-blur-md border-b border-white/[0.02]">
+        <header className="sticky top-0 z-50 pt-10 pb-6 mb-4 -mx-5 px-5 sm:-mx-6 sm:px-6 bg-gradient-to-b from-[#050505]/95 via-[#050505]/70 to-transparent backdrop-blur-xl border-b border-white/[0.02] transition-all duration-300">
           <div className="flex flex-col items-center gap-5">
             <div className="text-[9px] sm:text-[10px] tracking-[0.6em] text-[#9A9AAA] font-bold uppercase drop-shadow-md">
               VASEY/AI PRESENTS
@@ -180,9 +175,9 @@ export default function App() {
           </div>
         </header>
 
-        <main className="space-y-6">
+        <main className="space-y-6 relative z-10">
           {/* Input Area */}
-          <section className="glass-panel rounded-3xl p-5 sm:p-6 transition-transform duration-300 hover:shadow-[0_8px_40px_rgba(230,57,70,0.15)]">
+          <section className="glass-panel rounded-3xl p-5 sm:p-6 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(230,57,70,0.15)] group">
             <SectionLabel>Editor Canvas</SectionLabel>
             <div className="relative group mt-4">
               <textarea
@@ -190,10 +185,10 @@ export default function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Start typing, paste, or drag a prompt..."
-                className="w-full h-44 bg-transparent text-white placeholder-[#9A9AAA]/40 resize-none outline-none text-base sm:text-lg font-light leading-relaxed"
+                className="w-full h-44 bg-transparent text-white placeholder-[#9A9AAA]/40 resize-none outline-none text-base sm:text-lg font-light leading-relaxed transition-colors focus:placeholder-[#9A9AAA]/60"
               />
               {image && (
-                <div className="absolute inset-0 bg-[#1A1A1E]/80 backdrop-blur-sm flex items-center justify-center rounded-2xl p-4 border border-white/10">
+                <div className="absolute inset-0 bg-[#1A1A1E]/80 backdrop-blur-sm flex items-center justify-center rounded-2xl p-4 border border-white/10 animate-in fade-in zoom-in-95 duration-300">
                   <div className="relative w-full h-full max-w-sm">
                     <img
                       src={image}
@@ -211,7 +206,7 @@ export default function App() {
                 </div>
               )}
             </div>
-            <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+            <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5 group-hover:border-white/10 transition-colors duration-300">
               <div className="flex gap-2">
                 <button
                   onClick={() => fileInputRef.current?.click()}
@@ -232,9 +227,9 @@ export default function App() {
                 data-testid="enhance-button"
                 onClick={processPrompt}
                 disabled={isProcessing || (!input && !image)}
-                className="relative overflow-hidden group px-6 sm:px-8 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase transition-all disabled:opacity-40 disabled:grayscale active:scale-95"
+                className="relative overflow-hidden group/btn px-6 sm:px-8 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase transition-all disabled:opacity-40 disabled:grayscale active:scale-95 shadow-[0_4px_20px_rgba(230,57,70,0.3)] hover:shadow-[0_8px_30px_rgba(230,57,70,0.5)]"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#8B0000] via-[#E63946] to-[#CC2936] transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#8B0000] via-[#ff7b85] to-[#E63946] bg-[length:200%_100%] animate-shine transition-transform duration-500 group-hover/btn:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-50" />
                 <div className="relative z-10 flex items-center gap-2 text-white drop-shadow-md">
                   {isProcessing ? (
@@ -244,7 +239,7 @@ export default function App() {
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover/btn:rotate-12" />
                       <span>Enhance</span>
                     </>
                   )}
@@ -263,17 +258,17 @@ export default function App() {
                   <button
                     key={mode.id}
                     onClick={() => setSelectedMode(mode.id)}
-                    className={`relative flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-300 overflow-hidden active:scale-95 ${
+                    className={`group/mode relative flex flex-col items-center justify-center p-3.5 rounded-2xl border transition-all duration-300 overflow-hidden active:scale-95 ${
                       selectedMode === mode.id
                         ? 'border-[#E63946]/50 bg-gradient-to-b from-[#E63946]/20 to-transparent text-white shadow-[0_4px_20px_rgba(230,57,70,0.2)]'
-                        : 'border-white/5 bg-white/5 text-[#9A9AAA] hover:bg-white/10 hover:border-white/20'
+                        : 'border-white/5 bg-white/5 text-[#9A9AAA] hover:bg-white/10 hover:border-white/20 hover:text-white'
                     }`}
                   >
                     <mode.icon
-                      className={`w-5 h-5 mb-1.5 transition-colors ${
+                      className={`w-5 h-5 mb-1.5 transition-all duration-300 ${
                         selectedMode === mode.id
-                          ? 'text-[#ff7b85] drop-shadow-[0_0_5px_rgba(255,123,133,0.8)]'
-                          : ''
+                          ? 'text-[#ff7b85] drop-shadow-[0_0_5px_rgba(255,123,133,0.8)] scale-110'
+                          : 'group-hover/mode:scale-110'
                       }`}
                     />
                     <span className="text-[10px] font-bold uppercase tracking-widest">
@@ -287,12 +282,12 @@ export default function App() {
             {/* Model Selector */}
             <section className="glass-panel rounded-3xl p-5">
               <SectionLabel>Target Model</SectionLabel>
-              <div className="relative group mt-4">
+              <div className="relative group/select mt-4">
                 <select
                   data-testid="model-select"
                   value={selectedModel}
                   onChange={(e) => setSelectedModel(e.target.value)}
-                  className="w-full bg-white/5 backdrop-blur-md text-sm font-medium py-4 px-5 rounded-2xl border border-white/10 hover:border-white/30 hover:bg-white/10 outline-none appearance-none transition-all cursor-pointer text-white shadow-inner"
+                  className="w-full bg-white/5 backdrop-blur-md text-sm font-medium py-4 px-5 rounded-2xl border border-white/10 hover:border-white/20 hover:bg-white/10 focus:border-[#E63946]/50 focus:bg-white/10 outline-none appearance-none transition-all cursor-pointer text-white shadow-inner"
                 >
                   {MODELS.map((m) => (
                     <option key={m.id} value={m.id} className="bg-[#1A1A1E] text-white py-2">
@@ -300,7 +295,7 @@ export default function App() {
                     </option>
                   ))}
                 </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none w-8 h-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm border border-white/10">
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none w-8 h-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-sm border border-white/10 group-hover/select:border-white/30 transition-colors">
                   <ChevronDown className="w-4 h-4 text-white" />
                 </div>
               </div>
@@ -309,7 +304,7 @@ export default function App() {
 
           {/* Output Area */}
           {output && (
-            <section className="glass-panel rounded-3xl p-5 sm:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <section className="glass-panel rounded-3xl p-5 sm:p-6 shadow-[0_10px_40px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-8 duration-700">
               <div className="flex items-center justify-between mb-5">
                 <SectionLabel>Optimized Output</SectionLabel>
                 <button
@@ -334,7 +329,7 @@ export default function App() {
 
           {/* Error Message */}
           {error && (
-            <div className="bg-[#8B0000]/20 backdrop-blur-md border border-[#E63946]/50 rounded-2xl p-4 text-center shadow-[0_0_20px_rgba(230,57,70,0.2)]">
+            <div className="bg-[#8B0000]/20 backdrop-blur-md border border-[#E63946]/50 rounded-2xl p-4 text-center shadow-[0_0_20px_rgba(230,57,70,0.2)] animate-in fade-in zoom-in duration-300">
               <p className="text-[#ff7b85] text-xs font-bold tracking-wider uppercase">{error}</p>
             </div>
           )}

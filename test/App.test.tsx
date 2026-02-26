@@ -34,15 +34,16 @@ describe('App', () => {
     }
   });
 
-  it('renders exactly 3 model options in dropdown', () => {
+  it('renders exactly 4 model options in dropdown', () => {
     render(<App />);
     const selects = screen.getAllByTestId('model-select');
     const select = selects[0]!;
     const options = select.querySelectorAll('option');
-    expect(options).toHaveLength(3);
+    expect(options).toHaveLength(4);
     expect(options[0]!.textContent).toBe('Anthropic Claude Sonnet 4.6');
-    expect(options[1]!.textContent).toBe('OpenAI ChatGPT-5.2');
-    expect(options[2]!.textContent).toBe('Google Gemini 3.0 Pro');
+    expect(options[1]!.textContent).toBe('Anthropic Claude Haiku 4.5');
+    expect(options[2]!.textContent).toBe('OpenAI ChatGPT-5.2');
+    expect(options[3]!.textContent).toBe('Google Gemini 3.0 Pro');
   });
 
   it('disables Enhance button when input is empty', () => {

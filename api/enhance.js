@@ -13,6 +13,12 @@ const MODEL_MAP = {
     gatewayModelId: 'anthropic/claude-sonnet-4-5',
     displayName: 'Anthropic Claude Sonnet 4.6',
   },
+  'claude-haiku': {
+    provider: 'anthropic',
+    modelId: 'claude-haiku-4-5-20251001',
+    gatewayModelId: 'anthropic/claude-haiku-4-5',
+    displayName: 'Anthropic Claude Haiku 4.5',
+  },
   'chatgpt-5': {
     provider: 'openai',
     modelId: 'chatgpt-4o-latest',
@@ -122,7 +128,7 @@ async function callAIGateway(systemPrompt, userPrompt, imageData, modelConfig) {
   return response.choices[0]?.message?.content ?? '';
 }
 
-async function callAnthropic(systemPrompt, userPrompt, imageData) {
+async function callAnthropic(systemPrompt, userPrompt, imageData, modelConfig) {
   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   const content = [];
@@ -137,7 +143,7 @@ async function callAnthropic(systemPrompt, userPrompt, imageData) {
   content.push({ type: 'text', text: userPrompt });
 
   const response = await client.messages.create({
-    model: 'claude-sonnet-4-6-20260217',
+    model: modelConfig.modelId,
     max_tokens: 4096,
     system: systemPrompt,
     messages: [{ role: 'user', content }],
@@ -147,12 +153,12 @@ async function callAnthropic(systemPrompt, userPrompt, imageData) {
   return textBlock?.text ?? '';
 }
 
-async function callOpenAI(systemPrompt, userPrompt, imageData) {
+async function callOpenAI(systemPrompt, userPrompt, imageData, modelConfig) {
   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const userContent = buildOpenAIUserContent(userPrompt, imageData);
 
   const response = await client.chat.completions.create({
-    model: 'chatgpt-4o-latest',
+    model: modelConfig.modelId,
     max_tokens: 4096,
     messages: [
       { role: 'system', content: systemPrompt },
@@ -163,10 +169,10 @@ async function callOpenAI(systemPrompt, userPrompt, imageData) {
   return response.choices[0]?.message?.content ?? '';
 }
 
-async function callGoogle(systemPrompt, userPrompt, imageData) {
+async function callGoogle(systemPrompt, userPrompt, imageData, modelConfig) {
   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
   const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-pro',
+    model: modelConfig.modelId,
     systemInstruction: { parts: [{ text: systemPrompt }] },
   });
 
@@ -243,13 +249,13 @@ export default async function handler(req, res) {
     if (!enhancedPrompt) {
       switch (modelConfig.provider) {
         case 'anthropic':
-          enhancedPrompt = await callAnthropic(systemPrompt, prompt, image);
+          enhancedPrompt = await callAnthropic(systemPrompt, prompt, image, modelConfig);
           break;
         case 'openai':
-          enhancedPrompt = await callOpenAI(systemPrompt, prompt, image);
+          enhancedPrompt = await callOpenAI(systemPrompt, prompt, image, modelConfig);
           break;
         case 'google':
-          enhancedPrompt = await callGoogle(systemPrompt, prompt, image);
+          enhancedPrompt = await callGoogle(systemPrompt, prompt, image, modelConfig);
           break;
         default:
           return res.status(400).json({ error: 'Unknown provider.' });
