@@ -7,7 +7,7 @@ The advanced prompt optimization engine. Enhance, expand, clarify, and rewrite A
 ## Features
 
 - **Multi-mode optimization** — Four distinct modes (Enhance, Expand, Clarify, Rewrite) that each transform prompts differently
-- **Three-model targeting** — Output adapts to: Anthropic Claude Sonnet 4.6, OpenAI ChatGPT-5.2, or Google Gemini 3.0 Pro
+- **Four-model targeting** — Output adapts to: Anthropic Claude Sonnet 4.6, Anthropic Claude Haiku 4.5, OpenAI ChatGPT-5.2, or Google Gemini 3.0 Pro
 - **Image context** — Upload reference images (PNG, JPEG, GIF, WebP; 5 MB max) to provide visual context during optimization
 - **Secure zero-trust architecture** — API keys never reach the browser; all AI calls route through Vercel serverless functions
 - **Installable PWA** — Add to home screen on mobile (iOS/Android) or desktop for an app-like experience with offline shell caching
@@ -35,6 +35,7 @@ All modes return **only** the optimized prompt text — no commentary, labels, o
 | Display Name | Provider | Backend Model ID | Prompt Format |
 |-------------|----------|------------------|---------------|
 | Anthropic Claude Sonnet 4.6 | Anthropic | `claude-sonnet-4-6-20260217` | XML tags (`<context>`, `<task>`, `<example>`) |
+| Anthropic Claude Haiku 4.5 | Anthropic | `claude-haiku-4-5-20251001` | XML tags (`<context>`, `<task>`, `<example>`) |
 | OpenAI ChatGPT-5.2 | OpenAI | `chatgpt-4o-latest` | Markdown + personas/roles |
 | Google Gemini 3.0 Pro | Google | `gemini-2.5-pro` | Structured headings + direct instructions |
 
@@ -44,7 +45,7 @@ All modes return **only** the optimized prompt text — no commentary, labels, o
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | React 19, TypeScript 5.7, Tailwind CSS 3 |
+| Frontend | React 19, TypeScript 5.7, Tailwind CSS 3, tailwindcss-animate |
 | Build | Vite 6 |
 | Icons | Lucide React |
 | PWA | Web App Manifest, Service Worker |
@@ -113,7 +114,7 @@ npm run test       # Run tests
          │
          ▼
 ┌─────────────────────┐
-│  Select target model │   3. Pick: Claude / ChatGPT / Gemini
+│  Select target model │   3. Pick: Claude Sonnet / Haiku / ChatGPT / Gemini
 │  Select mode         │   4. Choose an optimization mode
 └────────┬────────────┘
          │
@@ -152,7 +153,7 @@ Optimizes a prompt using the selected AI model and enhancement mode.
 | `prompt` | `string` | Yes | The prompt to optimize (1–50,000 characters) |
 | `image` | `string` | No | Base64 data URI for visual context (max 5 MB) |
 | `mode` | `string` | Yes | One of: `enhance`, `expand`, `clarify`, `rewrite` |
-| `targetModel` | `string` | Yes | One of: `claude-sonnet`, `chatgpt-5`, `gemini-3` |
+| `targetModel` | `string` | Yes | One of: `claude-sonnet`, `claude-haiku`, `chatgpt-5`, `gemini-3` |
 
 **Success response** (`200`):
 
@@ -205,6 +206,7 @@ rePROMPTer/
 ├── test/
 │   ├── App.test.tsx         # Component tests
 │   ├── api.test.ts          # API client tests
+│   ├── enhance-route.test.ts # Backend route tests
 │   └── setup.ts             # Vitest setup
 ├── scripts/
 │   └── generate-icons.mjs   # Generate PWA icons from SVG
