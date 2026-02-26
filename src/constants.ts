@@ -18,6 +18,7 @@ export const TAGLINE = 'The advanced prompt optimization engine.';
 
 export const MODELS: Model[] = [
   { id: 'claude-sonnet', name: 'Anthropic Claude Sonnet 4.6' },
+  { id: 'claude-haiku', name: 'Anthropic Claude Haiku 4.5' },
   { id: 'chatgpt-5', name: 'OpenAI ChatGPT-5.2' },
   { id: 'gemini-3', name: 'Google Gemini 3.0 Pro' },
 ];
