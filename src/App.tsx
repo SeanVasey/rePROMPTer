@@ -18,7 +18,7 @@ import { enhancePrompt } from './api';
 function CustomLogoIcon() {
   return (
     <div className="relative w-24 h-24 flex items-center justify-center animate-float">
-      <div className="absolute w-14 h-14 bg-[#E63946] rounded-full blur-[20px] opacity-70 animate-pulse" style={{ animationDuration: '3s' }} />
+      <div className="absolute w-14 h-14 bg-[#E63946] rounded-full blur-[20px] opacity-70 animate-pulse [animation-duration:3s]" />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1024 1024"
