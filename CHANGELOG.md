@@ -5,13 +5,37 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.3.0] - 2026-02-26
+
+### Added
+
+- **Claude Haiku 4.5 model** — Fourth target model added to frontend and backend (`claude-haiku-4-5-20251001`), with full AI Gateway + fallback support
+- **Frontend design overhaul** — Redesigned glassmorphism UI with enhanced visual effects:
+  - Darker background palette (`#050505`)
+  - Redesigned logo icon with crimson glow effect (no container square)
+  - Enhanced glass-panel CSS (deeper blur, hover glow with crimson accent, smooth cubic-bezier transitions)
+  - Three animated background orbs with `drift` parallax animation
+  - Enhance button with continuous `shine` gradient sweep animation
+  - Mode button hover effects with scoped group scaling
+  - Select dropdown focus/hover styling with crimson accent
+  - Output section slide-in entry animation
+  - Error section fade-in zoom animation
+  - Image overlay zoom-in entry animation
+  - Textarea focus placeholder transition
+- **`tailwindcss-animate`** dependency for entry animation utilities (`animate-in`, `fade-in`, `slide-in-from-bottom-*`, `zoom-in-*`)
+- Custom Tailwind keyframes: `drift` (parallax orbs) and `shine` (button gradient sweep)
 
 ### Fixed
 
+- **Hardcoded model IDs in provider functions** — `callAnthropic`, `callOpenAI`, and `callGoogle` now use `modelConfig.modelId` instead of hardcoded strings, enabling correct multi-model-per-provider routing
 - Updated `api/enhance.js` to use Vercel AI Gateway as the primary routing path for all target models, with automatic fallback to provider-native SDK calls when gateway calls fail and provider keys are configured
 - Added explicit server configuration handling so enhancement requests now fail fast with actionable errors when neither AI Gateway nor provider credentials are available
-- Added route-level tests covering gateway-first routing, provider fallback behavior, and missing-credentials failure mode
+
+### Changed
+
+- Version bumped from v2.2.0 to v2.3.0
+- Model count increased from 3 to 4 (re-added Claude Haiku as a lightweight option)
+- Test suite updated for 4-model assertions (16/16 tests passing)
 
 ---
 
