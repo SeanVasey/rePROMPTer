@@ -23,7 +23,7 @@ describe('App', () => {
     render(<App />);
     const heading = screen.getByRole('heading', { level: 1 });
     expect(heading.textContent).toContain('rePROMPTer');
-    expect(screen.getAllByText('v2.3.0').length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText('v2.3.1').length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText('VASEY/AI PRESENTS').length).toBeGreaterThanOrEqual(1);
   });
 

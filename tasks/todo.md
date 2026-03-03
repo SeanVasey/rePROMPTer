@@ -2,7 +2,27 @@
 
 Active task plan with checkable items. Updated per session.
 
-## Current Session (2026-02-26)
+## Current Session (2026-02-26) — v2.3.1 Patch
+
+- [x] Apply Issue #16 fix: replace inline `style={{ animationDuration: '3s' }}` with Tailwind `[animation-duration:3s]` in `App.tsx`
+- [x] Apply Issue #17 fix: move `tailwindcss-animate` from `dependencies` to `devDependencies` in `package.json`
+- [x] Bump version to v2.3.1 (`package.json`, `constants.ts`, test assertion)
+- [x] Update CHANGELOG.md with v2.3.1 release entry (closes #16, #17)
+- [x] Update tasks/todo.md and tasks/lessons.md
+- [x] Full verification: lint ✓ | typecheck ✓ | test (16/16) ✓ | build ✓
+- [x] Commit, push, and create pull request
+
+## Review
+
+All verification steps passed:
+- **Lint**: Clean (0 warnings)
+- **Typecheck**: Clean (no errors)
+- **Tests**: 16/16 passed (3 test files)
+- **Build**: Successful (`dist/` output generated)
+
+---
+
+## Previous Session (2026-02-26) — v2.3.0
 
 - [x] Install `tailwindcss-animate` plugin
 - [x] Add `drift` and `shine` keyframes to `tailwind.config.js`
@@ -18,15 +38,6 @@ Active task plan with checkable items. Updated per session.
 - [x] Update README.md (4-model targeting, supported models table, API spec, tech stack, folder structure)
 - [x] Update .env.example to mention Haiku
 - [x] Full verification: lint ✓ | typecheck ✓ | test (16/16) ✓ | build ✓
-
-## Review
-
-All verification steps passed:
-- **Lint**: Clean (0 warnings)
-- **Typecheck**: Clean (no errors)
-- **Tests**: 16/16 passed (3 test files)
-- **Build**: Successful (`dist/` output generated)
-- **Dependencies**: `npm ci` clean install with 0 vulnerabilities
 
 ---
 
