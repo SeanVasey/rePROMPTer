@@ -13,6 +13,11 @@ Accumulated patterns from corrections and mistakes. Reviewed at session start.
 - **When adding a new model to the frontend, update the backend MODEL_MAP simultaneously.** Adding `claude-haiku` required changes to both `constants.ts` and `api/enhance.js`.
 - **Fix hardcoded model IDs in provider functions when adding models for the same provider.** `callAnthropic` had `'claude-sonnet-4-6-20260217'` hardcoded — adding Haiku would have silently routed to Sonnet without parameterizing `modelConfig.modelId`.
 
+## Session: 2026-03-04 (v2.4.0 Icon Update)
+
+- **When replacing icon assets, update all downstream references.** The icon pipeline flows: source SVG → `public/favicon.svg` → `generate-icons.mjs` → PNG set. Also update `reprompter-icon.svg` (used by App.tsx), service worker cache name, and any glow/shadow colors that reference the old icon's palette.
+- **Clean up source files after moving them.** Root-level design artifacts (`rPr Icon.svg`, etc.) should not persist in the repo after being moved to their production location.
+
 ## Session: 2026-02-26 (v2.3.1 Patch)
 
 - **Use Tailwind arbitrary values over inline styles.** Inline `style={{ animationDuration: '3s' }}` breaks consistency with the Tailwind utility-first approach. Use `[animation-duration:3s]` class instead — keeps all styling in `className` for easier scanning and maintenance.
