@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Preview</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f5;
+        }
+        .svg-container {
+            width: 90vmin;
+            height: 90vmin;
+            max-width: 800px;
+            max-height: 800px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+          <rect width="100%" height="100%" fill="#FFFFFF" />
+
+          <g stroke="#1C1E21" stroke-width="7" fill="none">
+            <circle cx="340" cy="155" r="11" />
+            <circle cx="655" cy="155" r="11" />
+            <circle cx="840" cy="335" r="11" />
+            <circle cx="840" cy="660" r="11" />
+            <circle cx="660" cy="840" r="11" />
+            <circle cx="340" cy="840" r="11" />
+            <circle cx="160" cy="660" r="11" />
+            <circle cx="160" cy="340" r="11" />
+          </g>
+
+          <g stroke="#1C1E21" stroke-width="7" stroke-linecap="round">
+            <line x1="188" y1="282" x2="215" y2="268" />
+            <path d="M 790 248 L 810 268 M 790 268 L 810 248" />
+            <path d="M 790 718 L 810 738 M 790 738 L 810 718" />
+            <path d="M 285 808 L 305 828 M 285 828 L 305 808" />
+          </g>
+
+          <g stroke="#FA5D60" stroke-width="6" stroke-linecap="round">
+            <path d="M 228 212 H 252 M 240 200 V 224" />
+            <path d="M 738 218 H 762 M 750 206 V 230" />
+            <path d="M 233 778 H 257 M 245 766 V 790" />
+          </g>
+          <circle cx="750" cy="790" r="9" fill="none" stroke="#FA5D60" stroke-width="5" />
+
+          <g stroke="#B0B2B4" stroke-width="5" stroke-linecap="round">
+            <path d="M 698 188 H 722 M 710 176 V 200" />
+          </g>
+          <circle cx="205" cy="725" r="4" fill="#B0B2B4" />
+
+          <g stroke="#1C1E21" stroke-width="9" stroke-linejoin="round">
+            <rect x="479" y="100" width="42" height="58" rx="5" ry="5" fill="#FA5D60" />
+            <polygon points="479,158 521,158 500,192" fill="#1C1E21" />
+          </g>
+
+          <g stroke="#1C1E21" stroke-width="9" fill="#FFFFFF">
+            <circle cx="165" cy="500" r="44" />
+            <circle cx="165" cy="500" r="23" />
+          </g>
+          <circle cx="165" cy="500" r="10" fill="#FA5D60" />
+
+          <rect x="808" y="470" width="46" height="52" rx="4" fill="#FA5D60" />
+          <rect x="780" y="442" width="46" height="52" rx="4" fill="#FFFFFF" stroke="#1C1E21" stroke-width="9" stroke-linejoin="round" />
+
+          <g fill="#FFFFFF" stroke="#1C1E21" stroke-width="9" stroke-linejoin="round">
+            <path d="M 442 790 H 555 A 16 16 0 0 1 571 806 V 848 A 16 16 0 0 1 555 864 H 518 L 500 894 L 482 864 H 442 A 16 16 0 0 1 426 848 V 806 A 16 16 0 0 1 442 790 Z" />
+          </g>
+          <line x1="458" y1="818" x2="537" y2="818" stroke="#1C1E21" stroke-width="7" stroke-linecap="round" />
+          <line x1="458" y1="840" x2="507" y2="840" stroke="#1C1E21" stroke-width="7" stroke-linecap="round" />
+
+          <defs>
+            <clipPath id="r-clip" clipPathUnits="userSpaceOnUse">
+              <path d="
+                M 330 290 H 510 
+                C 570 290, 620 295, 655 325 
+                C 695 358, 700 400, 700 435 
+                C 700 475, 690 510, 665 535 
+                C 640 560, 605 570, 565 572 
+                L 730 720 H 615 L 450 580 H 430 V 720 H 330 Z 
+                M 430 518 L 500 518 
+                C 520 518, 540 518, 555 515 
+                C 578 508, 594 495, 598 472 
+                C 600 452, 598 434, 582 412 
+                C 565 390, 535 380, 495 380 
+                L 430 380 Z" clip-rule="evenodd" />
+            </clipPath>
+          </defs>
+
+          <g clip-path="url(#r-clip)">
+            <rect x="200" y="200" width="600" height="600" fill="#FA5D60" />
+            <polygon points="0,-40 1000,960 1000,1130 0,130" fill="#FFFFFF" />
+            <line x1="0" y1="-40" x2="1000" y2="960" stroke="#1C1E21" stroke-width="12" />
+            <line x1="0" y1="130" x2="1000" y2="1130" stroke="#1C1E21" stroke-width="12" />
+          </g>
+
+          <g fill="none" stroke="#1C1E21" stroke-width="12" stroke-linejoin="round">
+            <path d="
+              M 330 290 H 510 
+              C 570 290, 620 295, 655 325 
+              C 695 358, 700 400, 700 435 
+              C 700 475, 690 510, 665 535 
+              C 640 560, 605 570, 565 572 
+              L 730 720 H 615 L 450 580 H 430 V 720 H 330 Z" />
+
+            <path d="
+              M 430 380 H 495 
+              C 535 380, 565 390, 582 412 
+              C 598 434, 600 452, 598 472 
+              C 594 495, 578 508, 555 515 
+              C 540 518, 520 518, 500 518 
+              H 430 Z" />
+          </g>
+        </svg>
+    </div>
+</body>
+</html>
