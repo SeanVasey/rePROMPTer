@@ -18,11 +18,11 @@ import { enhancePrompt } from './api';
 function CustomLogoIcon() {
   return (
     <div className="relative w-16 h-16 flex items-center justify-center animate-float">
-      <div className="absolute w-12 h-12 bg-[#E63946] rounded-full blur-[16px] opacity-60 animate-pulse [animation-duration:3s]" />
+      <div className="absolute w-12 h-12 bg-[#fa5d60] rounded-full blur-[16px] opacity-60 animate-pulse [animation-duration:3s]" />
       <img
         src="/reprompter-icon.svg"
         alt="rePROMPTer icon"
-        className="relative z-10 w-14 h-14 drop-shadow-[0_0_12px_rgba(230,57,70,0.8)]"
+        className="relative z-10 w-14 h-14 drop-shadow-[0_0_12px_rgba(250,93,96,0.8)]"
       />
     </div>
   );

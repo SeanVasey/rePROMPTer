@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-03-04
+
+### Changed
+
+- **Updated app icon to finalized design** — Replaced previous 159 KB icon with new optimized 12 KB SVG featuring stylized "R" with geometric decorative elements in crimson (#fa5d60) palette
+- **Regenerated all PWA icons** — Full icon set (72–512px standard + maskable + apple-touch-icon) regenerated from new source SVG
+- **Aligned glow effect colors** — Updated `CustomLogoIcon` glow and drop-shadow from `#E63946` to `#fa5d60` to match new icon's color scheme
+- **Cleaned up root-level SVG files** — Removed legacy `rPr Icon.svg`, `rPr Icon update 2.svg`, and `reprompter_icon_new.svg` from repository root
+- Service worker cache version bumped to `reprompter-v2.4.0`
+- Version bumped from v2.3.1 to v2.4.0
+
+---
+
 ## [2.3.1] - 2026-02-26
 
 ### Fixed

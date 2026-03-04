@@ -2,7 +2,29 @@
 
 Active task plan with checkable items. Updated per session.
 
-## Current Session (2026-02-26) — v2.3.1 Patch
+## Current Session (2026-03-04) — v2.4.0 Icon Update
+
+- [x] Copy finalized icon (`rPr Icon update 2.svg`) to `public/favicon.svg` and `public/reprompter-icon.svg`
+- [x] Delete legacy root-level SVG files (`rPr Icon.svg`, `rPr Icon update 2.svg`, `reprompter_icon_new.svg`)
+- [x] Regenerate all PWA icon PNGs via `npm run generate-icons`
+- [x] Bump service worker cache version to `reprompter-v2.4.0`
+- [x] Bump version to v2.4.0 (`package.json`, `constants.ts`, test assertion)
+- [x] Align `CustomLogoIcon` glow colors from `#E63946` to `#fa5d60` to match new icon
+- [x] Update CHANGELOG.md with v2.4.0 release entry
+- [x] Full verification: lint ✓ | typecheck ✓ | test (16/16) ✓ | build ✓
+- [x] Commit, push to `claude/update-app-icon-xok5I`
+
+## Review
+
+All verification steps passed:
+- **Lint**: Clean (0 warnings)
+- **Typecheck**: Clean (no errors)
+- **Tests**: 16/16 passed (3 test files)
+- **Build**: Successful (`dist/` output generated, 6.36s)
+
+---
+
+## Previous Session (2026-02-26) — v2.3.1 Patch
 
 - [x] Apply Issue #16 fix: replace inline `style={{ animationDuration: '3s' }}` with Tailwind `[animation-duration:3s]` in `App.tsx`
 - [x] Apply Issue #17 fix: move `tailwindcss-animate` from `dependencies` to `devDependencies` in `package.json`
@@ -11,14 +33,6 @@ Active task plan with checkable items. Updated per session.
 - [x] Update tasks/todo.md and tasks/lessons.md
 - [x] Full verification: lint ✓ | typecheck ✓ | test (16/16) ✓ | build ✓
 - [x] Commit, push, and create pull request
-
-## Review
-
-All verification steps passed:
-- **Lint**: Clean (0 warnings)
-- **Typecheck**: Clean (no errors)
-- **Tests**: 16/16 passed (3 test files)
-- **Build**: Successful (`dist/` output generated)
 
 ---
 
