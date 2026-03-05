@@ -97,7 +97,7 @@ describe('App', () => {
     render(<App />);
     const expandButton = screen.getAllByText('Expand')[0]!.closest('button')!;
     fireEvent.click(expandButton);
-    expect(expandButton.className).toContain('border-[#E63946]');
+    expect(expandButton.className).toContain('border-[#EF4050]');
   });
 
   it('changes model when the dropdown value changes', () => {
