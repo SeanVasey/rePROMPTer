@@ -29,10 +29,10 @@ body,
 
 /* Glass morphism panel */
 .glass-panel {
-  background: rgba(15, 15, 18, 0.4);
+  background: rgba(18, 18, 26, 0.45);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     0 24px 48px -12px rgba(0, 0, 0, 0.5),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.1);
@@ -40,9 +40,31 @@ body,
 }
 
 .glass-panel:hover {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     0 32px 64px -12px rgba(0, 0, 0, 0.6),
-    0 0 40px -10px rgba(230, 57, 70, 0.15),
+    0 0 40px -10px rgba(239, 64, 80, 0.2),
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-panel:focus-within {
+  border-color: rgba(239, 64, 80, 0.3);
+  box-shadow:
+    0 32px 64px -12px rgba(0, 0, 0, 0.6),
+    0 0 50px -10px rgba(239, 64, 80, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* Safe area insets for notched / Dynamic Island devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-area-x {
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+  .safe-area-bottom {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
 }
