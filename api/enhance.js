@@ -240,6 +240,7 @@ export default async function handler(req, res) {
       try {
         enhancedPrompt = await callAIGateway(systemPrompt, prompt, image, modelConfig);
       } catch (gatewayError) {
+        console.warn('AI Gateway failed, attempting provider fallback:', gatewayError.message);
         if (!providerKeyAvailable) {
           throw gatewayError;
         }

@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.1] - 2026-03-13
+
+### Changed
+
+- **CLAUDE.md replaced with v2** — Streamlined structure; expanded security section (auth, input validation, API access control, supply chain, production hardening); added CI/CD with deployment targets (Vercel primary, GitHub Pages when applicable); added project structure reference; added README.md spec with badge row, logo header, and contributing section requirements
+- **README.md updated to match new spec** — Added centered logo with alt text, shields.io badge row (CI status, latest release, license), and Contributing section with link to Code of Conduct
+- **CI pipeline hardened** — Added `npm audit --audit-level=high` step to GitHub Actions to fail on high/critical vulnerabilities
+- **Gateway fallback logging** — `api/enhance.js` now logs a warning when AI Gateway fails before falling back to provider SDK (previously silent)
+- **`.claude/` directory scaffolded** — Added `settings.json` for Claude Code configuration
+
+---
+
 ## [2.4.0] - 2026-03-04
 
 ### Changed

@@ -23,3 +23,9 @@ Accumulated patterns from corrections and mistakes. Reviewed at session start.
 - **Use Tailwind arbitrary values over inline styles.** Inline `style={{ animationDuration: '3s' }}` breaks consistency with the Tailwind utility-first approach. Use `[animation-duration:3s]` class instead — keeps all styling in `className` for easier scanning and maintenance.
 - **Build-time-only Tailwind plugins belong in devDependencies.** `tailwindcss-animate` is consumed at build time by the Tailwind PostCSS pipeline and has no runtime role. Keeping it in `dependencies` inflates production `node_modules` unnecessarily.
 - **Always review Copilot draft PRs before merging.** Copilot's auto-generated fixes were correct in both cases but should still be verified against the codebase, tested, and consolidated into a single versioned release rather than merged as-is.
+
+## Session: 2026-03-13 (CLAUDE.md v2 + Standards Audit)
+
+- **When updating CLAUDE.md standards, audit the entire repo against the new spec.** Each section (security, CI, README, deployment, project structure) needs a corresponding check. Treat it like a compliance audit.
+- **Silent error swallowing is an observability gap.** The gateway fallback in `api/enhance.js` caught errors but didn't log them — operators couldn't see why gateway calls failed. Always log (at minimum `console.warn`) before falling back.
+- **Version bumps touch four places.** `package.json`, `src/constants.ts`, test assertions, and `public/sw.js` cache name all need updating together. Missing any one causes test failures or stale caches.
