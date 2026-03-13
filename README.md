@@ -1,6 +1,16 @@
-# rePROMPTer
+<p align="center">
+  <img src="public/reprompter-icon.svg" alt="rePROMPTer icon" width="96" height="96" />
+</p>
 
-The advanced prompt optimization engine. Enhance, expand, clarify, and rewrite AI prompts — optimized for any target model.
+<h1 align="center">rePROMPTer</h1>
+
+<p align="center">The advanced prompt optimization engine. Enhance, expand, clarify, and rewrite AI prompts — optimized for any target model.</p>
+
+<p align="center">
+  <a href="https://github.com/SeanVasey/rePROMPTer/actions/workflows/ci.yml"><img src="https://github.com/SeanVasey/rePROMPTer/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
+  <img src="https://img.shields.io/github/v/release/SeanVasey/rePROMPTer" alt="Latest release" />
+  <img src="https://img.shields.io/github/license/SeanVasey/rePROMPTer" alt="License" />
+</p>
 
 ---
 
@@ -222,6 +232,12 @@ rePROMPTer/
 ├── vercel.json              # Vercel deployment config + security headers
 └── vite.config.ts
 ```
+
+---
+
+## Contributing
+
+Contributions welcome. Please open an issue before submitting large changes. See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for community guidelines.
 
 ---
 

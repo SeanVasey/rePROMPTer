@@ -1,5 +1,5 @@
 // rePROMPTer Service Worker — app shell caching strategy
-const CACHE_NAME = 'reprompter-v2.4.0';
+const CACHE_NAME = 'reprompter-v2.4.1';
 const SHELL_ASSETS = [
   '/',
   '/manifest.json',
