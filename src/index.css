@@ -58,13 +58,141 @@ body,
 /* Safe area insets for notched / Dynamic Island devices */
 @supports (padding-top: env(safe-area-inset-top)) {
   .safe-area-top {
-    padding-top: env(safe-area-inset-top);
+    padding-top: max(1.25rem, env(safe-area-inset-top));
   }
   .safe-area-x {
     padding-left: max(1.25rem, env(safe-area-inset-left));
     padding-right: max(1.25rem, env(safe-area-inset-right));
   }
   .safe-area-bottom {
-    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* ═══ CSS Custom Properties for footer ═══ */
+:root {
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(255, 255, 255, 0.12);
+  --accent-deep: rgba(239, 64, 80, 0.4);
+  --accent-dim: rgba(255, 138, 148, 0.6);
+  --accent-primary: #ef4050;
+  --text-secondary: #a8a8bc;
+  --text-muted: rgba(168, 168, 188, 0.6);
+}
+
+/* ═══ VASEY/AI Universal Footer ═══ */
+.app-footer {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: none;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-deep) 30%,
+    var(--accent-primary) 50%,
+    var(--accent-deep) 70%,
+    transparent 100%
+  );
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+.footer-divider {
+  width: auto;
+  height: auto;
+  background: none;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.footer-divider::before,
+.footer-divider::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-deep);
+}
+.footer-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-deep);
+}
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.footer-logo {
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-secondary);
+}
+.footer-logo:hover {
+  opacity: 0.75;
+}
+.footer-logo-vm {
+  width: 36px;
+  height: 31px;
+}
+.footer-logo-vai {
+  width: 34px;
+  height: 34px;
+}
+.footer-logo-sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border-glow);
+}
+.footer-suite-tag {
+  font-family: 'Reddit Sans', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.footer-app-tag {
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+.footer-copyright {
+  font-family: 'Reddit Sans', 'Inter', sans-serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  line-height: 1.6;
+  padding-bottom: 8px;
+}
+.footer-copyright a {
+  color: var(--accent-dim);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-copyright a:hover {
+  color: var(--accent-primary);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
