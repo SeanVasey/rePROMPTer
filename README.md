@@ -8,9 +8,14 @@
 
 <p align="center">
   <a href="https://github.com/SeanVasey/rePROMPTer/actions/workflows/ci.yml"><img src="https://github.com/SeanVasey/rePROMPTer/actions/workflows/ci.yml/badge.svg" alt="CI status" /></a>
+  <a href="https://vercel.com/seanvasey/reprompter"><img src="https://img.shields.io/github/deployments/SeanVasey/rePROMPTer/production?label=deploy&logo=vercel" alt="Deploy status" /></a>
   <img src="https://img.shields.io/github/v/release/SeanVasey/rePROMPTer" alt="Latest release" />
   <img src="https://img.shields.io/github/license/SeanVasey/rePROMPTer" alt="License" />
+  <img src="https://img.shields.io/badge/node-18%2B-brightgreen?logo=node.js" alt="Node 18+" />
+  <img src="https://img.shields.io/badge/PRs-welcome-blue" alt="PRs welcome" />
 </p>
+
+<!-- TODO: Replace with an actual app screenshot (docs/screenshot.png) showing the dark glassmorphic UI in action -->
 
 ---
 
