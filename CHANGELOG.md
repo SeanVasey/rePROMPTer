@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.3] - 2026-06-12
+
+### Fixed
+
+- **Top safe-area scrim** — The iOS status bar / notch / Dynamic Island region is now an exact, fully opaque match of the app background, and page content scrolls cleanly under it:
+  - The sticky header (the element that owns the top edge) extends its own background through `env(safe-area-inset-top)` via a `.safe-area-top::before` strip filled with the new `--app-bg` token — no separate scrim layer, no layout shift, inset padding still applied exactly once
+  - Previously the header's `#0A0A0F/95 → transparent` glass gradient let scrolled content faintly ghost through behind the system clock and status icons; the opaque strip guarantees full masking while the existing gradient immediately below continues to provide the blend into the page
+  - App background promoted to a `--app-bg: #0a0a0f` custom property (single source of truth alongside `theme-color` and the manifest); `html`/`body`/`#root` now reference it
+- Service worker cache version bumped to `reprompter-v2.4.3`
+
+### Changed
+
+- Version bumped from v2.4.2 to v2.4.3
+
+---
+
 ## [2.4.2] - 2026-06-12
 
 ### Fixed

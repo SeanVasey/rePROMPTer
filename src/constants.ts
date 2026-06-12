@@ -13,7 +13,7 @@ export interface Mode {
   desc: string;
 }
 
-export const VERSION = 'v2.4.2';
+export const VERSION = 'v2.4.3';
 export const TAGLINE = 'The advanced prompt optimization engine.';
 
 export const MODELS: Model[] = [

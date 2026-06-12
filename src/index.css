@@ -11,7 +11,7 @@ body,
   /* App background on the document itself so safe-area / overscroll regions
      (status bar with black-translucent, home indicator) never expose the
      default browser white. Matches theme-color and the app shell bg. */
-  background-color: #0a0a0f;
+  background-color: var(--app-bg, #0a0a0f);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -73,10 +73,27 @@ body,
   .safe-area-bottom {
     padding-bottom: calc(2rem + env(safe-area-inset-bottom));
   }
+  /* The sticky header owns the top edge, so its background doubles as the
+     status-bar mask: paint its safe-area strip with the opaque app background
+     so scrolling content can never show through behind the system clock /
+     status icons. The header's existing 95%→transparent gradient continues
+     immediately below, providing the blend into the page. */
+  .safe-area-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: env(safe-area-inset-top);
+    background-color: var(--app-bg);
+    pointer-events: none;
+  }
 }
 
-/* ═══ CSS Custom Properties for footer ═══ */
+/* ═══ CSS Custom Properties ═══ */
 :root {
+  /* App background — must stay in sync with theme-color meta and manifest */
+  --app-bg: #0a0a0f;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(255, 255, 255, 0.12);
   --accent-deep: rgba(239, 64, 80, 0.4);
