@@ -16,6 +16,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Copy toast offset by `env(safe-area-inset-bottom)` so it never sits under the home indicator
 - Service worker cache version bumped to `reprompter-v2.4.2` so installed clients refetch the corrected manifest
 
+### Security
+
+- **Resolved all 7 `npm audit` findings (1 critical, 3 high, 3 moderate)** via in-range lockfile updates — no breaking changes:
+  - `vitest` (critical — arbitrary file read/execution via UI server, GHSA-5xrq-8626-4rwp)
+  - `vite` (high — path traversal in optimized-deps `.map` handling GHSA-4w7w-66w2-5vf9; arbitrary file read via dev-server WebSocket GHSA-p9ff-h696-f583)
+  - `picomatch` (high — method injection in POSIX character classes GHSA-3v7f-55p6-f55p; ReDoS via extglob quantifiers GHSA-c2c7-rcm5-vvqj)
+  - `flatted` (high — unbounded recursion DoS and prototype pollution in `parse()`, GHSA-25h7-pfq9-p65f / GHSA-rf6f-7fwh-wjgh)
+  - `postcss` (moderate — XSS via unescaped `</style>` in stringify output, GHSA-qx2v-qp2m-jg93)
+  - `brace-expansion` (moderate — process hang / memory exhaustion, GHSA-f886-m6hf-6m8v)
+  - `ws` (moderate — uninitialized memory disclosure, GHSA-58qx-3vcg-4xpx)
+
 ### Changed
 
 - Version bumped from v2.4.1 to v2.4.2
