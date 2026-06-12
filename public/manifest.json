@@ -4,8 +4,8 @@
   "description": "The advanced prompt optimization engine.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0A0A0C",
-  "theme_color": "#0A0A0C",
+  "background_color": "#0A0A0F",
+  "theme_color": "#0A0A0F",
   "orientation": "any",
   "categories": ["productivity", "utilities"],
   "icons": [

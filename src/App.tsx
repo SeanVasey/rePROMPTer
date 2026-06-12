@@ -339,7 +339,7 @@ export default function App() {
 
       {/* Copy Toast */}
       <div
-        className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 transform ${
+        className={`fixed bottom-[calc(2rem+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 z-50 transition-all duration-500 transform ${
           copyStatus
             ? 'opacity-100 translate-y-0 scale-100'
             : 'opacity-0 translate-y-12 scale-90 pointer-events-none'

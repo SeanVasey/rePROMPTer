@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.2] - 2026-06-12
+
+### Fixed
+
+- **Mobile safe-area rendering** — Audited and fixed iOS notch / Dynamic Island and home-indicator regions so they render as a seamless continuation of the app background:
+  - `html`/`body`/`#root` now carry the app background (`#0A0A0F`) so overscroll and safe-area regions never expose the default white browser background (required by `apple-mobile-web-app-status-bar-style: black-translucent`)
+  - `manifest.json` `theme_color`/`background_color` corrected from `#0A0A0C` to `#0A0A0F` to match the actual app background and `theme-color` meta — fixes the mismatched status-bar strip in installed PWA mode
+  - `.safe-area-top` now composes the header's 2rem rhythm with `env(safe-area-inset-top)` (was `max(1.25rem, …)`, which collapsed desktop padding and left content flush against the notch)
+  - Copy toast offset by `env(safe-area-inset-bottom)` so it never sits under the home indicator
+- Service worker cache version bumped to `reprompter-v2.4.2` so installed clients refetch the corrected manifest
+
+### Security
+
+- **Resolved all 7 `npm audit` findings (1 critical, 3 high, 3 moderate)** via in-range lockfile updates — no breaking changes:
+  - `vitest` (critical — arbitrary file read/execution via UI server, GHSA-5xrq-8626-4rwp)
+  - `vite` (high — path traversal in optimized-deps `.map` handling GHSA-4w7w-66w2-5vf9; arbitrary file read via dev-server WebSocket GHSA-p9ff-h696-f583)
+  - `picomatch` (high — method injection in POSIX character classes GHSA-3v7f-55p6-f55p; ReDoS via extglob quantifiers GHSA-c2c7-rcm5-vvqj)
+  - `flatted` (high — unbounded recursion DoS and prototype pollution in `parse()`, GHSA-25h7-pfq9-p65f / GHSA-rf6f-7fwh-wjgh)
+  - `postcss` (moderate — XSS via unescaped `</style>` in stringify output, GHSA-qx2v-qp2m-jg93)
+  - `brace-expansion` (moderate — process hang / memory exhaustion, GHSA-f886-m6hf-6m8v)
+  - `ws` (moderate — uninitialized memory disclosure, GHSA-58qx-3vcg-4xpx)
+
+### Changed
+
+- Version bumped from v2.4.1 to v2.4.2
+
+---
+
 ## [2.4.1] - 2026-03-13
 
 ### Changed
