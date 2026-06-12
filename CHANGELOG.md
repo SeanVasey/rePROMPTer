@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.2] - 2026-06-12
+
+### Fixed
+
+- **Mobile safe-area rendering** — Audited and fixed iOS notch / Dynamic Island and home-indicator regions so they render as a seamless continuation of the app background:
+  - `html`/`body`/`#root` now carry the app background (`#0A0A0F`) so overscroll and safe-area regions never expose the default white browser background (required by `apple-mobile-web-app-status-bar-style: black-translucent`)
+  - `manifest.json` `theme_color`/`background_color` corrected from `#0A0A0C` to `#0A0A0F` to match the actual app background and `theme-color` meta — fixes the mismatched status-bar strip in installed PWA mode
+  - `.safe-area-top` now composes the header's 2rem rhythm with `env(safe-area-inset-top)` (was `max(1.25rem, …)`, which collapsed desktop padding and left content flush against the notch)
+  - Copy toast offset by `env(safe-area-inset-bottom)` so it never sits under the home indicator
+- Service worker cache version bumped to `reprompter-v2.4.2` so installed clients refetch the corrected manifest
+
+### Changed
+
+- Version bumped from v2.4.1 to v2.4.2
+
+---
+
 ## [2.4.1] - 2026-03-13
 
 ### Changed

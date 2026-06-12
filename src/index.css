@@ -8,6 +8,10 @@ body,
   min-height: 100dvh;
   margin: 0;
   padding: 0;
+  /* App background on the document itself so safe-area / overscroll regions
+     (status bar with black-translucent, home indicator) never expose the
+     default browser white. Matches theme-color and the app shell bg. */
+  background-color: #0a0a0f;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -58,7 +62,9 @@ body,
 /* Safe area insets for notched / Dynamic Island devices */
 @supports (padding-top: env(safe-area-inset-top)) {
   .safe-area-top {
-    padding-top: max(1.25rem, env(safe-area-inset-top));
+    /* Compose with the header's 2rem (pt-8) rhythm so content clears the
+       notch / Dynamic Island while keeping the same spacing below it. */
+    padding-top: calc(2rem + env(safe-area-inset-top));
   }
   .safe-area-x {
     padding-left: max(1.25rem, env(safe-area-inset-left));
